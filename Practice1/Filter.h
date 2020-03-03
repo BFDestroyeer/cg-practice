@@ -2,6 +2,19 @@
 
 #include <qimage.h>
 
+
+template <typename Type>
+Type clamp(Type value, int max, int min)
+{
+    if (value > max)
+        return max;
+    else if (value < min)
+        return min;
+
+    return value;
+}
+
+
 class Filter
 {
 public:
@@ -39,6 +52,7 @@ public:
     int mRadius;
     
     MatrixFilter(int radius = 1) : mRadius(radius) {};
+    ~MatrixFilter() { delete[] vector; };
 
     QImage calculateNewImagePixMap(const QImage& image, int radius);
     QColor calculateNewPixelColor(const QImage& image, int x, int y, int radius);

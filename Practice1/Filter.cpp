@@ -1,17 +1,6 @@
 #include "Filter.h"
 
 
-template <typename Type>
-Type clamp(Type value, int max, int min)
-{
-    if (value > max)
-        return max;
-    else if (value < min)
-        return min;
-
-    return value;
-}
-
 QImage InversionFilter::calculateNewImagePixMap(const QImage& image, int radius)
 {
     QImage result(image);
