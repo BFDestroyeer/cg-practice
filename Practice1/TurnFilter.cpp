@@ -1,14 +1,18 @@
 #include "TurnFilter.h"
 
+constexpr double PI = 3.1415926535897932384626433832795;
 
 
-QImage TurnFilter::calculateNewImagePixMap(const QImage& image, int radius)
+TurnFilter::TurnFilter(double angle_)
+{
+    double angle = angle_ * PI / 180;
+}
+
+QImage TurnFilter::calculateNewImagePixMap(const QImage& image)
 {
     QImage result(image);
-
-    center_x = image.height() / 2;
-    center_y = image.height() / 2;
-    angle = 1;
+    double center_x = image.height() / 2;
+    double center_y = image.height() / 2;
 
     for (int x = 0; x < image.width(); x++)
     {

@@ -2,11 +2,12 @@
 
 #include "Filter.h"
 
-class SepiaFilter : public Filter
+
+class GrayScaleFilter : public Filter
 {
 public:
-    SepiaFilter() = default;
-    ~SepiaFilter() = default;
+    GrayScaleFilter() {};
+    ~GrayScaleFilter() {};
 
     static QImage calculateNewImagePixMap(const QImage& image);
 };

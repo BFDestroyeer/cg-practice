@@ -1,9 +1,12 @@
 #pragma once
-#include "Filter.h"
+
+#include "MatrixFilter.h"
+
+
 class SobelFilter : public MatrixFilter
 {
     public:
-    SobelFilter(int radius = 1, char direction = 'x');
+    SobelFilter(char direction = 'x');
     ~SobelFilter() = default;
 };
 

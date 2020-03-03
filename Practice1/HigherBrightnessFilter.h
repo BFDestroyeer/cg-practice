@@ -9,6 +9,6 @@ public:
     HigherBrightnessFilter() = default;
     ~HigherBrightnessFilter() = default;
 
-    static QImage calculateNewImagePixMap(const QImage& image, int radius);
+    static QImage calculateNewImagePixMap(const QImage& image);
 };
 

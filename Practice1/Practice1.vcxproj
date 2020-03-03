@@ -80,17 +80,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Filter.cpp" />
+    <ClCompile Include="BlurFilter.cpp" />
+    <ClCompile Include="GaussianBlurFilter.cpp" />
+    <ClCompile Include="GrayScaleFilter.cpp" />
     <ClCompile Include="HigherBrightnessFilter.cpp" />
+    <ClCompile Include="InversionFilter.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MatrixFilter.cpp" />
     <ClCompile Include="SepiaFilter.cpp" />
     <ClCompile Include="SharpFilter.cpp" />
     <ClCompile Include="SobelFilter.cpp" />
     <ClCompile Include="TurnFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BlurFilter.h" />
     <ClInclude Include="Filter.h" />
+    <ClInclude Include="Functions.h" />
+    <ClInclude Include="GaussianBlurFilter.h" />
+    <ClInclude Include="GrayScaleFilter.h" />
     <ClInclude Include="HigherBrightnessFilter.h" />
+    <ClInclude Include="InversionFilter.h" />
+    <ClInclude Include="MatrixFilter.h" />
     <ClInclude Include="SepiaFilter.h" />
     <ClInclude Include="SharpFilter.h" />
     <ClInclude Include="SobelFilter.h" />

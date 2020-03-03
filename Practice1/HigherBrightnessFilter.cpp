@@ -2,7 +2,7 @@
 
 #define BRIGHNESS_COEF 32
 
-QImage HigherBrightnessFilter::calculateNewImagePixMap(const QImage& image, int radius)
+QImage HigherBrightnessFilter::calculateNewImagePixMap(const QImage& image)
 {
     QImage result(image);
 

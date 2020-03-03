@@ -1,9 +1,9 @@
 #include "SobelFilter.h"
 
 
-SobelFilter::SobelFilter(int radius, char direction)
+SobelFilter::SobelFilter(char direction)
 {
-    mRadius = 1;
+    radius = 1;
     if (direction == 'x')
     {
         vector = new float[9] { -1, -2, -1, 0, 0, 0, 1, 2, 1 };

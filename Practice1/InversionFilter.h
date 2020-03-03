@@ -2,11 +2,12 @@
 
 #include "Filter.h"
 
-class SepiaFilter : public Filter
+
+class InversionFilter : public Filter
 {
 public:
-    SepiaFilter() = default;
-    ~SepiaFilter() = default;
+    InversionFilter() {};
+    ~InversionFilter() {};
 
     static QImage calculateNewImagePixMap(const QImage& image);
 };

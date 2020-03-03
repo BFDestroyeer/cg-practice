@@ -19,48 +19,84 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Header Files\Filters">
+      <UniqueIdentifier>{3425aa66-65b0-4a62-aa98-11051f620d3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Filters">
+      <UniqueIdentifier>{66cac9f1-efa2-41bf-8d85-c4fcbb92b7d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Filter.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="HigherBrightnessFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
     <ClCompile Include="SepiaFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HigherBrightnessFilter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SobelFilter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
     <ClCompile Include="SharpFilter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="SobelFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
     <ClCompile Include="TurnFilter.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="InversionFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="GrayScaleFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="MatrixFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="BlurFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="GaussianBlurFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SepiaFilter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
     <ClInclude Include="HigherBrightnessFilter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="SobelFilter.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="SepiaFilter.h">
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
     <ClInclude Include="SharpFilter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="SobelFilter.h">
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
     <ClInclude Include="TurnFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InversionFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="GrayScaleFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="MatrixFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="BlurFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="GaussianBlurFilter.h">
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

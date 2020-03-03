@@ -2,7 +2,7 @@
 
 #define SEPIA_COEF 20
 
-QImage SepiaFilter::calculateNewImagePixMap(const QImage& image, int radius)
+QImage SepiaFilter::calculateNewImagePixMap(const QImage& image)
 {
     QImage result(image);
 
