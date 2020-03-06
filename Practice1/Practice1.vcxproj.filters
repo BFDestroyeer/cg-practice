@@ -66,6 +66,9 @@
     <ClCompile Include="ShiftFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
+    <ClCompile Include="MedianFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
     <ClInclude Include="Functions.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="MedianFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
   </ItemGroup>

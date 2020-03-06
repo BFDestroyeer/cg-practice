@@ -88,6 +88,7 @@
     <ClCompile Include="InversionFilter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixFilter.cpp" />
+    <ClCompile Include="MedianFilter.cpp" />
     <ClCompile Include="SepiaFilter.cpp" />
     <ClCompile Include="SharpFilter.cpp" />
     <ClCompile Include="ShiftFilter.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="HigherBrightnessFilter.h" />
     <ClInclude Include="InversionFilter.h" />
     <ClInclude Include="MatrixFilter.h" />
+    <ClInclude Include="MedianFilter.h" />
     <ClInclude Include="SepiaFilter.h" />
     <ClInclude Include="SharpFilter.h" />
     <ClInclude Include="ShiftFilter.h" />

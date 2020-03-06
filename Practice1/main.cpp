@@ -18,6 +18,7 @@
 #include "GrayScaleFilter.h"
 #include "InversionFilter.h"
 #include "EmbossingFilter.h"
+#include "MedianFilter.h"
 
 int main(int argc, char* argv[])
 {
@@ -30,6 +31,7 @@ int main(int argc, char* argv[])
     SobelFilter sobel_filter;
     SharpFilter sharp_filter;
     EmbossingFilter embrosing_filter;
+    MedianFilter median_filter(3);
 
 
         for (int i = 0; i < argc; i++)
@@ -64,6 +66,8 @@ int main(int argc, char* argv[])
     std::cout << "Sharped" << std::endl;
     QImage embrosed_image = embrosing_filter.calculateNewImagePixMap(image);
     std::cout << "Embrosed" << std::endl;
+    QImage medianed_image = median_filter.calculateNewImagePixMap(image);
+    std::cout << "Medianed" << std::endl;
 
 
 
@@ -78,4 +82,5 @@ int main(int argc, char* argv[])
     sobeled_image.save("Output/Sobeled.png");
     sharped_image.save("Output/Sharped.png");
     embrosed_image.save("Output/Embrosed.png");
+    medianed_image.save("Output/Medianded.png");
 }
