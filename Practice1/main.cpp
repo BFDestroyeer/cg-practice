@@ -12,23 +12,25 @@
 #include "SobelFilter.h"
 #include "SharpFilter.h"
 #include "TurnFilter.h"
+#include "ShiftFilter.h"
 #include "BlurFilter.h"
 #include "GaussianBlurFilter.h"
 #include "GrayScaleFilter.h"
 #include "InversionFilter.h"
-
+#include "EmbossingFilter.h"
 
 int main(int argc, char* argv[])
 {
     std::string path;
     QImage image;
 
-    TurnFilter turn_filter(90);
+    TurnFilter turn_filter(45);
     BlurFilter blur_filter(3);
     GaussianBlurFilter gaussian_blur_filter(3, 2);
     SobelFilter sobel_filter;
     SharpFilter sharp_filter;
-    
+    EmbossingFilter embrosing_filter;
+
 
         for (int i = 0; i < argc; i++)
         {
@@ -50,6 +52,8 @@ int main(int argc, char* argv[])
     std::cout << "Brightered" << std::endl;
     QImage turned_image = turn_filter.calculateNewImagePixMap(image);
     std::cout << "Turned" << std::endl;
+    QImage shifted_image = ShiftFilter::calculateNewImagePixMap(image);
+    std::cout << "Shifted" << std::endl;
     QImage blurred_image = blur_filter.calculateNewImagePixMap(image);
     std::cout << "Blured" << std::endl;
     QImage gaussed_image = gaussian_blur_filter.calculateNewImagePixMap(image);
@@ -58,7 +62,8 @@ int main(int argc, char* argv[])
     std::cout << "Sobeled" << std::endl;
     QImage sharped_image = sharp_filter.calculateNewImagePixMap(image);
     std::cout << "Sharped" << std::endl;
-
+    QImage embrosed_image = embrosing_filter.calculateNewImagePixMap(image);
+    std::cout << "Embrosed" << std::endl;
 
 
 
@@ -67,8 +72,10 @@ int main(int argc, char* argv[])
     sepied_image.save("Output/Sepied.png");
     brighter_image.save("Output/Brighter.png");
     turned_image.save("Output/Turned.png");
+    shifted_image.save("Output/Shifted.png");
     blurred_image.save("Output/Blurred.png");
     gaussed_image.save("Output/Gaussed.png");
     sobeled_image.save("Output/Sobeled.png");
     sharped_image.save("Output/Sharped.png");
+    embrosed_image.save("Output/Embrosed.png");
 }

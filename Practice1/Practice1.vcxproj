@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlurFilter.cpp" />
+    <ClCompile Include="EmbossingFilter.cpp" />
     <ClCompile Include="GaussianBlurFilter.cpp" />
     <ClCompile Include="GrayScaleFilter.cpp" />
     <ClCompile Include="HigherBrightnessFilter.cpp" />
@@ -89,11 +90,13 @@
     <ClCompile Include="MatrixFilter.cpp" />
     <ClCompile Include="SepiaFilter.cpp" />
     <ClCompile Include="SharpFilter.cpp" />
+    <ClCompile Include="ShiftFilter.cpp" />
     <ClCompile Include="SobelFilter.cpp" />
     <ClCompile Include="TurnFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlurFilter.h" />
+    <ClInclude Include="EmbossingFilter.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="GaussianBlurFilter.h" />
@@ -103,6 +106,7 @@
     <ClInclude Include="MatrixFilter.h" />
     <ClInclude Include="SepiaFilter.h" />
     <ClInclude Include="SharpFilter.h" />
+    <ClInclude Include="ShiftFilter.h" />
     <ClInclude Include="SobelFilter.h" />
     <ClInclude Include="TurnFilter.h" />
   </ItemGroup>

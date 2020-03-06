@@ -13,5 +13,5 @@ public:
     ~MatrixFilter() { delete[] vector; };
 
     QImage calculateNewImagePixMap(const QImage& image);
-    QColor calculateNewPixelColor(const QImage& image, int x, int y);
+    virtual QColor calculateNewPixelColor(const QImage& image, int x, int y);
 };

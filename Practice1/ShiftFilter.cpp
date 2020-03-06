@@ -1,18 +1,11 @@
-#include "TurnFilter.h"
+#include "ShiftFilter.h"
 
-constexpr double PI = 3.1415926535897932384626433832795;
+constexpr int SHIFT_STEP = 32;
 
 
-TurnFilter::TurnFilter(double angle_)
-{
-    angle = angle_ * PI / 180;
-}
-
-QImage TurnFilter::calculateNewImagePixMap(const QImage& image)
+QImage ShiftFilter::calculateNewImagePixMap(const QImage& image)
 {
     QImage result(image);
-    double center_x = image.height() / 2;
-    double center_y = image.height() / 2;
 
     for (int x = 0; x < image.width(); x++)
     {
@@ -20,8 +13,8 @@ QImage TurnFilter::calculateNewImagePixMap(const QImage& image)
         {
             double source_x, source_y;
 
-            source_x = (x - center_x) * cos(angle) - (y - center_y) * sin(angle) + center_x;
-            source_y = (x - center_x) * sin(angle) + (y - center_y) * cos(angle) + center_y;
+            source_x = x + SHIFT_STEP;
+            source_y = y;
 
             QColor image_color;
             if ((source_x < image.width()) && (source_x > 0) && (source_y < image.height()) && (source_y > 0))
