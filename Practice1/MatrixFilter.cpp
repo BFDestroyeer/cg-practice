@@ -1,6 +1,16 @@
 #include "MatrixFilter.h"
 
 
+MatrixFilter::MatrixFilter(int radius_) : radius(radius_)
+{
+    vector = nullptr;
+};
+
+MatrixFilter::~MatrixFilter()
+{
+    if (vector != nullptr) delete[] vector;
+}
+
 QImage MatrixFilter::calculateNewImagePixMap(const QImage& image)
 {
     QImage result(image);

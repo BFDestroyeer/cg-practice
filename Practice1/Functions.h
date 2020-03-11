@@ -1,13 +1,8 @@
 #pragma once
 
+#include <qcolor.h>
 
-template <typename Type>
-Type clamp(Type value, int max, int min)
-{
-    if (value > max)
-        return max;
-    else if (value < min)
-        return min;
+int clamp(int value, int max, int min);
 
-    return value;
-}
+//Сравнивает цвета, соответсвует требованиям std::sort
+bool compareColors(const QColor& abc, const QColor& b);

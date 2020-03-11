@@ -81,7 +81,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlurFilter.cpp" />
+    <ClCompile Include="DilationFilter.cpp" />
     <ClCompile Include="EmbossingFilter.cpp" />
+    <ClCompile Include="ErosionFilter.cpp" />
+    <ClCompile Include="Functions.cpp" />
     <ClCompile Include="GaussianBlurFilter.cpp" />
     <ClCompile Include="GrayScaleFilter.cpp" />
     <ClCompile Include="HigherBrightnessFilter.cpp" />
@@ -89,6 +92,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MatrixFilter.cpp" />
     <ClCompile Include="MedianFilter.cpp" />
+    <ClCompile Include="MorphologyFilter.cpp" />
+    <ClCompile Include="OpeningFilter.cpp" />
     <ClCompile Include="SepiaFilter.cpp" />
     <ClCompile Include="SharpFilter.cpp" />
     <ClCompile Include="ShiftFilter.cpp" />
@@ -97,7 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlurFilter.h" />
+    <ClInclude Include="DilationFilter.h" />
     <ClInclude Include="EmbossingFilter.h" />
+    <ClInclude Include="ErosionFilter.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="GaussianBlurFilter.h" />
@@ -106,6 +113,8 @@
     <ClInclude Include="InversionFilter.h" />
     <ClInclude Include="MatrixFilter.h" />
     <ClInclude Include="MedianFilter.h" />
+    <ClInclude Include="MorphologyFilter.h" />
+    <ClInclude Include="OpeningFilter.h" />
     <ClInclude Include="SepiaFilter.h" />
     <ClInclude Include="SharpFilter.h" />
     <ClInclude Include="ShiftFilter.h" />

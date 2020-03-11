@@ -4,7 +4,6 @@
 
 #include "Functions.h"
 
-
 class Filter
 {
 public:

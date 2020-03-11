@@ -1,11 +1,11 @@
+#pragma once
+
 #include <QtCore/QCoreApplication>
 
 #include <iostream>
 #include <string>
 
-#include <QImage>
-
-#include "Filter.h"
+#include <qimage.h>
 
 #include "SepiaFilter.h"
 #include "HigherBrightnessFilter.h"
@@ -19,6 +19,17 @@
 #include "InversionFilter.h"
 #include "EmbossingFilter.h"
 #include "MedianFilter.h"
+#include "DilationFilter.h"
+#include "ErosionFilter.h"
+#include "OpeningFilter.h"
+
+
+constexpr char tool[9] = 
+{
+    1, 1, 1,
+    1, 1, 1,
+    1, 1, 1
+};
 
 int main(int argc, char* argv[])
 {
@@ -32,6 +43,9 @@ int main(int argc, char* argv[])
     SharpFilter sharp_filter;
     EmbossingFilter embrosing_filter;
     MedianFilter median_filter(3);
+    DilationFilter dilation_filter(1, tool);
+    ErosionFilter erosion_filter(1, tool);
+    OpeningFilter opening_filter(1, tool);
 
 
         for (int i = 0; i < argc; i++)
@@ -68,6 +82,13 @@ int main(int argc, char* argv[])
     std::cout << "Embrosed" << std::endl;
     QImage medianed_image = median_filter.calculateNewImagePixMap(image);
     std::cout << "Medianed" << std::endl;
+    QImage dilated_image = dilation_filter.calculateNewImagePixMap(image);
+    std::cout << "Dilated" << std::endl;
+    QImage erosed_image = erosion_filter.calculateNewImagePixMap(image);
+    std::cout << "Erosioned" << std::endl;
+    QImage opened_image = opening_filter.calculateNewImagePixMap(image);
+    std::cout << "Opened" << std::endl;
+
 
 
 
@@ -83,4 +104,7 @@ int main(int argc, char* argv[])
     sharped_image.save("Output/Sharped.png");
     embrosed_image.save("Output/Embrosed.png");
     medianed_image.save("Output/Medianded.png");
+    dilated_image.save("Output/Dilated.png");
+    erosed_image.save("Output/Erosed.png");
+    opened_image.save("Output/Opened.png");
 }

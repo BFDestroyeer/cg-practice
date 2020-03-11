@@ -2,6 +2,7 @@
 
 #include "MatrixFilter.h"
 
+
 class BlurFilter : public MatrixFilter
 {
 public:

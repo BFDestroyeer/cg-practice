@@ -69,6 +69,21 @@
     <ClCompile Include="MedianFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
+    <ClCompile Include="MorphologyFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="DilationFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="ErosionFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="OpeningFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">
@@ -110,11 +125,23 @@
     <ClInclude Include="EmbossingFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="Functions.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
     <ClInclude Include="MedianFilter.h">
       <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="MorphologyFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="DilationFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ErosionFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="OpeningFilter.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

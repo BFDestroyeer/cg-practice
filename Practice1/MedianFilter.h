@@ -1,8 +1,8 @@
 #pragma once
 
-#include <algorithm>
-
 #include "MatrixFilter.h"
+
+#include <algorithm>
 
 
 class MedianFilter : public MatrixFilter
