@@ -96,6 +96,12 @@
     <ClCompile Include="MotionBlurFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
+    <ClCompile Include="GrayWorldFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfectReflectorFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">
@@ -165,6 +171,12 @@
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
     <ClInclude Include="MotionBlurFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="GrayWorldFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="PerfectReflectorFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
   </ItemGroup>

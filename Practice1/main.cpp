@@ -15,6 +15,8 @@
 #include "ShiftFilter.h"
 #include "WaveFilter.h"
 #include "GlassFilter.h"
+#include "GrayWorldFilter.h"
+#include "PerfectReflectorFilter.h"
 #include "BlurFilter.h"
 #include "MotionBlurFilter.h"
 #include "GaussianBlurFilter.h"
@@ -80,10 +82,14 @@ int main(int argc, char* argv[])
     std::cout << "Waved" << std::endl;
     QImage glassed_image = GlassFilter::calculateNewImagePixMap(image);
     std::cout << "Glassed" << std::endl;
+    QImage gray_world_image = GrayWorldFilter::calculateNewImagePixMap(image);
+    std::cout << "Gray world" << std::endl;
+    QImage perfect_reflector_image = PerfectReflectorFilter::calculateNewImagePixMap(image);
+    std::cout << "Perfect reflector" << std::endl;
     QImage blurred_image = blur_filter.calculateNewImagePixMap(image);
     std::cout << "Blured" << std::endl;
     QImage motion_blur_image = motion_blur_filter.calculateNewImagePixMap(image);
-    std::cout << "Motion Blur" << std::endl;
+    std::cout << "Motion blur" << std::endl;
     /*QImage gaussed_image = gaussian_blur_filter.calculateNewImagePixMap(image);
     std::cout << "Gaussed" << std::endl;
     QImage sobeled_image = sobel_filter.calculateNewImagePixMap(image);
@@ -114,8 +120,10 @@ int main(int argc, char* argv[])
     shifted_image.save("Output/Shifted.png");
     waved_image.save("Output/Waved.png");*/
     glassed_image.save("Output/Glassed.png");
+    gray_world_image.save("Output/Gray world.png");
+    perfect_reflector_image.save("Output/Perfect reflector.png");
     blurred_image.save("Output/Blurred.png");
-    motion_blur_image.save("Output/Motion Blur.png");
+    motion_blur_image.save("Output/Motion blur.png");
     /*gaussed_image.save("Output/Gaussed.png");
     sobeled_image.save("Output/Sobeled.png");
     sharped_image.save("Output/Sharped.png");
