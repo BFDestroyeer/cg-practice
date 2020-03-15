@@ -4,7 +4,7 @@
 
 BlurFilter::BlurFilter(int radius_) : MatrixFilter(radius_)
 {
-    int size = 2 * radius + 1;
+    size_t size = 2 * radius + 1;
     vector = new float[size * size];
     for (int i = 0; i < size; i++)
     {

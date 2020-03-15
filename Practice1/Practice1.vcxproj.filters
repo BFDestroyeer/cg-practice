@@ -75,9 +75,6 @@
     <ClCompile Include="DilationFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="Functions.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
     <ClCompile Include="ErosionFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
@@ -85,6 +82,18 @@
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
     <ClCompile Include="ClosingFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaveFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="GlassFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="MotionBlurFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
   </ItemGroup>
@@ -146,8 +155,17 @@
     <ClInclude Include="OpeningFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
+    <ClInclude Include="WaveFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
     <ClInclude Include="ClosingFilter.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="GlassFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionBlurFilter.h">
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

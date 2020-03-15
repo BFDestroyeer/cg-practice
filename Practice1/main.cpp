@@ -13,7 +13,10 @@
 #include "SharpFilter.h"
 #include "TurnFilter.h"
 #include "ShiftFilter.h"
+#include "WaveFilter.h"
+#include "GlassFilter.h"
 #include "BlurFilter.h"
+#include "MotionBlurFilter.h"
 #include "GaussianBlurFilter.h"
 #include "GrayScaleFilter.h"
 #include "InversionFilter.h"
@@ -39,6 +42,7 @@ int main(int argc, char* argv[])
 
     TurnFilter turn_filter(45);
     BlurFilter blur_filter(3);
+    MotionBlurFilter motion_blur_filter(3);
     GaussianBlurFilter gaussian_blur_filter(3, 2);
     SobelFilter sobel_filter;
     SharpFilter sharp_filter;
@@ -72,9 +76,15 @@ int main(int argc, char* argv[])
     std::cout << "Turned" << std::endl;
     QImage shifted_image = ShiftFilter::calculateNewImagePixMap(image);
     std::cout << "Shifted" << std::endl;
+    QImage waved_image = WaveFilter::calculateNewImagePixMap(image);
+    std::cout << "Waved" << std::endl;
+    QImage glassed_image = GlassFilter::calculateNewImagePixMap(image);
+    std::cout << "Glassed" << std::endl;
     QImage blurred_image = blur_filter.calculateNewImagePixMap(image);
     std::cout << "Blured" << std::endl;
-    QImage gaussed_image = gaussian_blur_filter.calculateNewImagePixMap(image);
+    QImage motion_blur_image = motion_blur_filter.calculateNewImagePixMap(image);
+    std::cout << "Motion Blur" << std::endl;
+    /*QImage gaussed_image = gaussian_blur_filter.calculateNewImagePixMap(image);
     std::cout << "Gaussed" << std::endl;
     QImage sobeled_image = sobel_filter.calculateNewImagePixMap(image);
     std::cout << "Sobeled" << std::endl;
@@ -102,8 +112,11 @@ int main(int argc, char* argv[])
     brighter_image.save("Output/Brighter.png");
     turned_image.save("Output/Turned.png");
     shifted_image.save("Output/Shifted.png");
+    waved_image.save("Output/Waved.png");*/
+    glassed_image.save("Output/Glassed.png");
     blurred_image.save("Output/Blurred.png");
-    gaussed_image.save("Output/Gaussed.png");
+    motion_blur_image.save("Output/Motion Blur.png");
+    /*gaussed_image.save("Output/Gaussed.png");
     sobeled_image.save("Output/Sobeled.png");
     sharped_image.save("Output/Sharped.png");
     embrosed_image.save("Output/Embrosed.png");
@@ -111,5 +124,5 @@ int main(int argc, char* argv[])
     dilated_image.save("Output/Dilated.png");
     erosed_image.save("Output/Erosed.png");
     opened_image.save("Output/Opened.png");
-    closed_image.save("Output/Closed.png");
+    closed_image.save("Output/Closed.png");*/
 }
