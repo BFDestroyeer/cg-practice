@@ -22,6 +22,7 @@
 #include "DilationFilter.h"
 #include "ErosionFilter.h"
 #include "OpeningFilter.h"
+#include "ClosingFilter.h"
 
 
 constexpr char tool[9] = 
@@ -46,6 +47,7 @@ int main(int argc, char* argv[])
     DilationFilter dilation_filter(1, tool);
     ErosionFilter erosion_filter(1, tool);
     OpeningFilter opening_filter(1, tool);
+    ClosingFilter closing_filter(1, tool);
 
 
         for (int i = 0; i < argc; i++)
@@ -88,6 +90,8 @@ int main(int argc, char* argv[])
     std::cout << "Erosioned" << std::endl;
     QImage opened_image = opening_filter.calculateNewImagePixMap(image);
     std::cout << "Opened" << std::endl;
+    QImage closed_image = closing_filter.calculateNewImagePixMap(image);
+    std::cout << "Closed" << std::endl;
 
 
 
@@ -107,4 +111,5 @@ int main(int argc, char* argv[])
     dilated_image.save("Output/Dilated.png");
     erosed_image.save("Output/Erosed.png");
     opened_image.save("Output/Opened.png");
+    closed_image.save("Output/Closed.png");
 }

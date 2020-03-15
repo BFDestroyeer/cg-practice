@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BlurFilter.cpp" />
+    <ClCompile Include="ClosingFilter.cpp" />
     <ClCompile Include="DilationFilter.cpp" />
     <ClCompile Include="EmbossingFilter.cpp" />
     <ClCompile Include="ErosionFilter.cpp" />
@@ -102,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BlurFilter.h" />
+    <ClInclude Include="ClosingFilter.h" />
     <ClInclude Include="DilationFilter.h" />
     <ClInclude Include="EmbossingFilter.h" />
     <ClInclude Include="ErosionFilter.h" />

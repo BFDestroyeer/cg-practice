@@ -84,6 +84,9 @@
     <ClCompile Include="OpeningFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
+    <ClCompile Include="ClosingFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Filter.h">
@@ -141,6 +144,9 @@
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
     <ClInclude Include="OpeningFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="ClosingFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
