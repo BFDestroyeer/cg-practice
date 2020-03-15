@@ -2,7 +2,7 @@
 
 #include <qimage.h>
 
-#include "Functions.h"
+#include "../Functions.h"
 
 class Filter
 {

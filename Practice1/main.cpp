@@ -7,27 +7,27 @@
 
 #include <qimage.h>
 
-#include "SepiaFilter.h"
-#include "HigherBrightnessFilter.h"
-#include "SobelFilter.h"
-#include "SharpFilter.h"
-#include "TurnFilter.h"
-#include "ShiftFilter.h"
-#include "WaveFilter.h"
-#include "GlassFilter.h"
-#include "GrayWorldFilter.h"
-#include "PerfectReflectorFilter.h"
-#include "BlurFilter.h"
-#include "MotionBlurFilter.h"
-#include "GaussianBlurFilter.h"
-#include "GrayScaleFilter.h"
-#include "InversionFilter.h"
-#include "EmbossingFilter.h"
-#include "MedianFilter.h"
-#include "DilationFilter.h"
-#include "ErosionFilter.h"
-#include "OpeningFilter.h"
-#include "ClosingFilter.h"
+#include "Sources/Filters/SepiaFilter.h"
+#include "Sources/Filters/HigherBrightnessFilter.h"
+#include "Sources/Filters/SobelFilter.h"
+#include "Sources/Filters/SharpFilter.h"
+#include "Sources/Filters/TurnFilter.h"
+#include "Sources/Filters/ShiftFilter.h"
+#include "Sources/Filters/WaveFilter.h"
+#include "Sources/Filters/GlassFilter.h"
+#include "Sources/Filters/GrayWorldFilter.h"
+#include "Sources/Filters/PerfectReflectorFilter.h"
+#include "Sources/Filters/BlurFilter.h"
+#include "Sources/Filters/MotionBlurFilter.h"
+#include "Sources/Filters/GaussianBlurFilter.h"
+#include "Sources/Filters/GrayScaleFilter.h"
+#include "Sources/Filters/InversionFilter.h"
+#include "Sources/Filters/EmbossingFilter.h"
+#include "Sources/Filters/MedianFilter.h"
+#include "Sources/Filters/DilationFilter.h"
+#include "Sources/Filters/ErosionFilter.h"
+#include "Sources/Filters/OpeningFilter.h"
+#include "Sources/Filters/ClosingFilter.h"
 
 
 constexpr char tool[9] = 
@@ -90,7 +90,7 @@ int main(int argc, char* argv[])
     std::cout << "Blured" << std::endl;
     QImage motion_blur_image = motion_blur_filter.calculateNewImagePixMap(image);
     std::cout << "Motion blur" << std::endl;
-    /*QImage gaussed_image = gaussian_blur_filter.calculateNewImagePixMap(image);
+    QImage gaussed_image = gaussian_blur_filter.calculateNewImagePixMap(image);
     std::cout << "Gaussed" << std::endl;
     QImage sobeled_image = sobel_filter.calculateNewImagePixMap(image);
     std::cout << "Sobeled" << std::endl;
@@ -118,13 +118,13 @@ int main(int argc, char* argv[])
     brighter_image.save("Output/Brighter.png");
     turned_image.save("Output/Turned.png");
     shifted_image.save("Output/Shifted.png");
-    waved_image.save("Output/Waved.png");*/
+    waved_image.save("Output/Waved.png");
     glassed_image.save("Output/Glassed.png");
     gray_world_image.save("Output/Gray world.png");
     perfect_reflector_image.save("Output/Perfect reflector.png");
     blurred_image.save("Output/Blurred.png");
     motion_blur_image.save("Output/Motion blur.png");
-    /*gaussed_image.save("Output/Gaussed.png");
+    gaussed_image.save("Output/Gaussed.png");
     sobeled_image.save("Output/Sobeled.png");
     sharped_image.save("Output/Sharped.png");
     embrosed_image.save("Output/Embrosed.png");
@@ -132,5 +132,5 @@ int main(int argc, char* argv[])
     dilated_image.save("Output/Dilated.png");
     erosed_image.save("Output/Erosed.png");
     opened_image.save("Output/Opened.png");
-    closed_image.save("Output/Closed.png");*/
+    closed_image.save("Output/Closed.png");
 }

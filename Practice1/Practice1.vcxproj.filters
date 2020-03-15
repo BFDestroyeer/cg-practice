@@ -20,164 +20,182 @@
       <ParseFiles>false</ParseFiles>
     </Filter>
     <Filter Include="Header Files\Filters">
-      <UniqueIdentifier>{3425aa66-65b0-4a62-aa98-11051f620d3a}</UniqueIdentifier>
+      <UniqueIdentifier>{41e6caca-8675-4581-a800-a9e2c333274c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Filters">
-      <UniqueIdentifier>{66cac9f1-efa2-41bf-8d85-c4fcbb92b7d9}</UniqueIdentifier>
+      <UniqueIdentifier>{0be54ab0-85ae-4519-b861-0feabc626ee0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Filters\Matrix filters">
+      <UniqueIdentifier>{86113e9b-e2cf-47ca-b608-3a91f7c9f8e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Filters\Morphology filters">
+      <UniqueIdentifier>{646ad7ee-b32b-4bba-b649-961f2b36a780}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Filters\Combined filters">
+      <UniqueIdentifier>{292cf6b9-f881-4d56-928b-344ee669ea9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Filters\Matrix filters">
+      <UniqueIdentifier>{b2732cf0-15f8-4209-83f7-c8aae76f2cb7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Filters\Morphology filters">
+      <UniqueIdentifier>{abf8b7c7-e3fe-4e94-b916-f85ee58f97bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Filters\Combined filters">
+      <UniqueIdentifier>{04ae4ec2-92c4-4c73-9465-53536e225e84}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HigherBrightnessFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="SepiaFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="SharpFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="SobelFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="TurnFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="InversionFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="GrayScaleFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="MatrixFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="BlurFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="GaussianBlurFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="EmbossingFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="ShiftFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="MedianFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="MorphologyFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="DilationFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="ErosionFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="OpeningFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="ClosingFilter.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
-    <ClCompile Include="Functions.cpp">
+    <ClCompile Include="Sources\Functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="WaveFilter.cpp">
+    <ClCompile Include="Sources\Filters\ShiftFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="GlassFilter.cpp">
+    <ClCompile Include="Sources\Filters\TurnFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="MotionBlurFilter.cpp">
+    <ClCompile Include="Sources\Filters\WaveFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="GrayWorldFilter.cpp">
+    <ClCompile Include="Sources\Filters\GlassFilter.cpp">
       <Filter>Source Files\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="PerfectReflectorFilter.cpp">
+    <ClCompile Include="Sources\Filters\GrayScaleFilter.cpp">
       <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\GrayWorldFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\HigherBrightnessFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\InversionFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\PerfectReflectorFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\SepiaFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\BlurFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\EmbossingFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\GaussianBlurFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\MatrixFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\MedianFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\MotionBlurFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\SharpFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\SobelFilter.cpp">
+      <Filter>Source Files\Filters\Matrix filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\ClosingFilter.cpp">
+      <Filter>Source Files\Filters\Combined filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\OpeningFilter.cpp">
+      <Filter>Source Files\Filters\Combined filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\DilationFilter.cpp">
+      <Filter>Source Files\Filters\Morphology filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\ErosionFilter.cpp">
+      <Filter>Source Files\Filters\Morphology filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\MorphologyFilter.cpp">
+      <Filter>Source Files\Filters\Morphology filters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Filter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="HigherBrightnessFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="SepiaFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="SharpFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="SobelFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="TurnFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="InversionFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="GrayScaleFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="MatrixFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="BlurFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="GaussianBlurFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="ShiftFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="EmbossingFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="MedianFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="MorphologyFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="DilationFilter.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
-    <ClInclude Include="Functions.h">
+    <ClInclude Include="Sources\Functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ErosionFilter.h">
+    <ClInclude Include="Sources\Filters\PerfectReflectorFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="OpeningFilter.h">
+    <ClInclude Include="Sources\Filters\SepiaFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="WaveFilter.h">
+    <ClInclude Include="Sources\Filters\ShiftFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="ClosingFilter.h">
+    <ClInclude Include="Sources\Filters\TurnFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="GlassFilter.h">
+    <ClInclude Include="Sources\Filters\WaveFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="MotionBlurFilter.h">
+    <ClInclude Include="Sources\Filters\Filter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="GrayWorldFilter.h">
+    <ClInclude Include="Sources\Filters\GlassFilter.h">
       <Filter>Header Files\Filters</Filter>
     </ClInclude>
-    <ClInclude Include="PerfectReflectorFilter.h">
+    <ClInclude Include="Sources\Filters\GrayScaleFilter.h">
       <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\GrayWorldFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\HigherBrightnessFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\InversionFilter.h">
+      <Filter>Header Files\Filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\SobelFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\SharpFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\OpeningFilter.h">
+      <Filter>Header Files\Filters\Combined filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\MotionBlurFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\MorphologyFilter.h">
+      <Filter>Header Files\Filters\Morphology filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\MedianFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\MatrixFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\GaussianBlurFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\ErosionFilter.h">
+      <Filter>Header Files\Filters\Morphology filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\EmbossingFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\DilationFilter.h">
+      <Filter>Header Files\Filters\Morphology filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\ClosingFilter.h">
+      <Filter>Header Files\Filters\Combined filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\BlurFilter.h">
+      <Filter>Header Files\Filters\Matrix filters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
