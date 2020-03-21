@@ -14,6 +14,7 @@
 #include "Sources/Filters/TurnFilter.h"
 #include "Sources/Filters/ShiftFilter.h"
 #include "Sources/Filters/WaveFilter.h"
+#include "Sources/Filters/LinearTension.h"
 #include "Sources/Filters/GlassFilter.h"
 #include "Sources/Filters/GrayWorldFilter.h"
 #include "Sources/Filters/PerfectReflectorFilter.h"
@@ -28,6 +29,9 @@
 #include "Sources/Filters/ErosionFilter.h"
 #include "Sources/Filters/OpeningFilter.h"
 #include "Sources/Filters/ClosingFilter.h"
+#include "Sources/Filters/TopHatFilter.h"
+#include "Sources/Filters/BlackHatFilter.h"
+#include "Sources/Filters/GradientFilter.h"
 
 
 constexpr char tool[9] = 
@@ -54,6 +58,9 @@ int main(int argc, char* argv[])
     ErosionFilter erosion_filter(1, tool);
     OpeningFilter opening_filter(1, tool);
     ClosingFilter closing_filter(1, tool);
+    TopHatFilter top_hat_filter(1, tool);
+    BlackHatFilter black_hat_filter(1, tool);
+    GradientFilter gradient_filter(1, tool);
 
 
         for (int i = 0; i < argc; i++)
@@ -80,6 +87,8 @@ int main(int argc, char* argv[])
     std::cout << "Shifted" << std::endl;
     QImage waved_image = WaveFilter::calculateNewImagePixMap(image);
     std::cout << "Waved" << std::endl;
+    QImage linear_tension_image = LinearTension::calculateNewImagePixMap(image);
+    std::cout << "Linear tension" << std::endl;
     QImage glassed_image = GlassFilter::calculateNewImagePixMap(image);
     std::cout << "Glassed" << std::endl;
     QImage gray_world_image = GrayWorldFilter::calculateNewImagePixMap(image);
@@ -108,7 +117,12 @@ int main(int argc, char* argv[])
     std::cout << "Opened" << std::endl;
     QImage closed_image = closing_filter.calculateNewImagePixMap(image);
     std::cout << "Closed" << std::endl;
-
+    QImage top_hat_image = top_hat_filter.calculateNewImagePixMap(image);
+    std::cout << "Top hat" << std::endl;
+    QImage black_hat_image = black_hat_filter.calculateNewImagePixMap(image);
+    std::cout << "Black hat" << std::endl;
+    QImage gradient_image = gradient_filter.calculateNewImagePixMap(image);
+    std::cout << "Gradient" << std::endl;
 
 
 
@@ -119,6 +133,7 @@ int main(int argc, char* argv[])
     turned_image.save("Output/Turned.png");
     shifted_image.save("Output/Shifted.png");
     waved_image.save("Output/Waved.png");
+    linear_tension_image.save("Output/Linear tension.png");
     glassed_image.save("Output/Glassed.png");
     gray_world_image.save("Output/Gray world.png");
     perfect_reflector_image.save("Output/Perfect reflector.png");
@@ -133,4 +148,7 @@ int main(int argc, char* argv[])
     erosed_image.save("Output/Erosed.png");
     opened_image.save("Output/Opened.png");
     closed_image.save("Output/Closed.png");
+    top_hat_image.save("Output/Top hat.png");
+    black_hat_image.save("Output/Black hat.png");
+    gradient_image.save("Output/Gradient.png");
 }

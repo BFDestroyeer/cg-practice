@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Sources\Filters\BlackHatFilter.cpp" />
     <ClCompile Include="Sources\Filters\BlurFilter.cpp" />
     <ClCompile Include="Sources\Filters\ClosingFilter.cpp" />
     <ClCompile Include="Sources\Filters\DilationFilter.cpp" />
@@ -88,10 +89,12 @@
     <ClCompile Include="Sources\Filters\ErosionFilter.cpp" />
     <ClCompile Include="Sources\Filters\GaussianBlurFilter.cpp" />
     <ClCompile Include="Sources\Filters\GlassFilter.cpp" />
+    <ClCompile Include="Sources\Filters\GradientFilter.cpp" />
     <ClCompile Include="Sources\Filters\GrayScaleFilter.cpp" />
     <ClCompile Include="Sources\Filters\GrayWorldFilter.cpp" />
     <ClCompile Include="Sources\Filters\HigherBrightnessFilter.cpp" />
     <ClCompile Include="Sources\Filters\InversionFilter.cpp" />
+    <ClCompile Include="Sources\Filters\LinearTension.cpp" />
     <ClCompile Include="Sources\Filters\MatrixFilter.cpp" />
     <ClCompile Include="Sources\Filters\MedianFilter.cpp" />
     <ClCompile Include="Sources\Filters\MorphologyFilter.cpp" />
@@ -102,11 +105,13 @@
     <ClCompile Include="Sources\Filters\SharpFilter.cpp" />
     <ClCompile Include="Sources\Filters\ShiftFilter.cpp" />
     <ClCompile Include="Sources\Filters\SobelFilter.cpp" />
+    <ClCompile Include="Sources\Filters\TopHatFilter.cpp" />
     <ClCompile Include="Sources\Filters\TurnFilter.cpp" />
     <ClCompile Include="Sources\Filters\WaveFilter.cpp" />
     <ClCompile Include="Sources\Functions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Sources\Filters\BlackHatFilter.h" />
     <ClInclude Include="Sources\Filters\BlurFilter.h" />
     <ClInclude Include="Sources\Filters\ClosingFilter.h" />
     <ClInclude Include="Sources\Filters\DilationFilter.h" />
@@ -115,10 +120,12 @@
     <ClInclude Include="Sources\Filters\Filter.h" />
     <ClInclude Include="Sources\Filters\GaussianBlurFilter.h" />
     <ClInclude Include="Sources\Filters\GlassFilter.h" />
+    <ClInclude Include="Sources\Filters\GradientFilter.h" />
     <ClInclude Include="Sources\Filters\GrayScaleFilter.h" />
     <ClInclude Include="Sources\Filters\GrayWorldFilter.h" />
     <ClInclude Include="Sources\Filters\HigherBrightnessFilter.h" />
     <ClInclude Include="Sources\Filters\InversionFilter.h" />
+    <ClInclude Include="Sources\Filters\LinearTension.h" />
     <ClInclude Include="Sources\Filters\MatrixFilter.h" />
     <ClInclude Include="Sources\Filters\MedianFilter.h" />
     <ClInclude Include="Sources\Filters\MorphologyFilter.h" />
@@ -129,6 +136,7 @@
     <ClInclude Include="Sources\Filters\SharpFilter.h" />
     <ClInclude Include="Sources\Filters\ShiftFilter.h" />
     <ClInclude Include="Sources\Filters\SobelFilter.h" />
+    <ClInclude Include="Sources\Filters\TopHatFilter.h" />
     <ClInclude Include="Sources\Filters\TurnFilter.h" />
     <ClInclude Include="Sources\Filters\WaveFilter.h" />
     <ClInclude Include="Sources\Functions.h" />
