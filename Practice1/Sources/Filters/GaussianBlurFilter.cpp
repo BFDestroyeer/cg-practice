@@ -12,7 +12,7 @@ GaussianBlurFilter::GaussianBlurFilter(int radius_, int sigma) : MatrixFilter(ra
         for (int j = -radius; j <= radius; j++)
         {
             int index = (i + radius) * size + (j + radius);
-            vector[index] = exp(-(i * i + j * j) / (sigma * sigma));
+            vector[index] = exp(-((float)(i * i + j * j)) / ((float)(sigma * sigma)));
             norm += vector[index];
         }
     }
