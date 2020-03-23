@@ -117,9 +117,6 @@
     <ClCompile Include="Sources\Filters\MorphologyFilter.cpp">
       <Filter>Source Files\Filters\Morphology filters</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Filters\LinearTension.cpp">
-      <Filter>Source Files\Filters</Filter>
-    </ClCompile>
     <ClCompile Include="Sources\Filters\TopHatFilter.cpp">
       <Filter>Source Files\Filters\Morphology filters</Filter>
     </ClCompile>
@@ -131,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="Sources\Filters\GradientFilter.cpp">
       <Filter>Source Files\Filters\Combined filters</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Filters\LinearTensionFilter.cpp">
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,9 +209,6 @@
     <ClInclude Include="Sources\Filters\BlurFilter.h">
       <Filter>Header Files\Filters\Matrix filters</Filter>
     </ClInclude>
-    <ClInclude Include="Sources\Filters\LinearTension.h">
-      <Filter>Header Files\Filters</Filter>
-    </ClInclude>
     <ClInclude Include="Sources\Filters\TopHatFilter.h">
       <Filter>Header Files\Filters\Combined filters</Filter>
     </ClInclude>
@@ -220,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Sources\Filters\GradientFilter.h">
       <Filter>Header Files\Filters\Combined filters</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources\Filters\LinearTensionFilter.h">
+      <Filter>Header Files\Filters</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

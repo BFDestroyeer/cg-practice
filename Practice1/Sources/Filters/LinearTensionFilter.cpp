@@ -1,7 +1,7 @@
-#include "LinearTension.h"
+#include "LinearTensionFilter.h"
 
 
-QImage LinearTension::calculateNewImagePixMap(const QImage& image)
+QImage LinearTensionFilter::calculateNewImagePixMap(const QImage& image)
 {
     QImage result(image);
 

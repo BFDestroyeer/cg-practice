@@ -94,7 +94,7 @@
     <ClCompile Include="Sources\Filters\GrayWorldFilter.cpp" />
     <ClCompile Include="Sources\Filters\HigherBrightnessFilter.cpp" />
     <ClCompile Include="Sources\Filters\InversionFilter.cpp" />
-    <ClCompile Include="Sources\Filters\LinearTension.cpp" />
+    <ClCompile Include="Sources\Filters\LinearTensionFilter.cpp" />
     <ClCompile Include="Sources\Filters\MatrixFilter.cpp" />
     <ClCompile Include="Sources\Filters\MedianFilter.cpp" />
     <ClCompile Include="Sources\Filters\MorphologyFilter.cpp" />
@@ -125,7 +125,7 @@
     <ClInclude Include="Sources\Filters\GrayWorldFilter.h" />
     <ClInclude Include="Sources\Filters\HigherBrightnessFilter.h" />
     <ClInclude Include="Sources\Filters\InversionFilter.h" />
-    <ClInclude Include="Sources\Filters\LinearTension.h" />
+    <ClInclude Include="Sources\Filters\LinearTensionFilter.h" />
     <ClInclude Include="Sources\Filters\MatrixFilter.h" />
     <ClInclude Include="Sources\Filters\MedianFilter.h" />
     <ClInclude Include="Sources\Filters\MorphologyFilter.h" />

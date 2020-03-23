@@ -2,11 +2,11 @@
 
 #include "Filter.h"
 
-class LinearTension : public Filter
+class LinearTensionFilter : public Filter
 {
 public:
-    LinearTension();
-    ~LinearTension();
+    LinearTensionFilter();
+    ~LinearTensionFilter();
 
     static QImage calculateNewImagePixMap(const QImage& image);
 };
