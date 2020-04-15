@@ -1,6 +1,6 @@
 #include "View.h"
 
-/*void View::initializeGL()
+void View::initializeGL()
 {
     qglClearColor(Qt::white);
     glShadeModel(GL_SMOOTH);
@@ -81,4 +81,4 @@ void View::keyPressEvent(QKeyEvent* event)
 
     }
     update();
-}*/
+}

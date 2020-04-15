@@ -1,12 +1,13 @@
 #pragma once
 
-#include <QGLWidget>
+#pragma comment (lib, "opengl32.lib")
 
+#include <QGLWidget>
 #include <QKeyEvent>
 
 #include "Data.h"
 
-/*class View : public QGLWidget
+class View : public QGLWidget
 {
 public:
     Data data;
@@ -21,5 +22,5 @@ public:
     void VisualizationQuads();
 
     void keyPressEvent(QKeyEvent* event);
-};*/
+};
 
