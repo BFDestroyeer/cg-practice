@@ -6,7 +6,6 @@
 
 class Data
 {
-public:
     short min;
     short max;
 
@@ -18,6 +17,7 @@ public:
     float y;
     float z;
 
+public:
     short* density;
 
     Data();
