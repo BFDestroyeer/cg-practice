@@ -71,6 +71,7 @@ void View::Load2dTexture()
         textureImage.bits());
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glEnable(GL_TEXTURE_2D);
 }
 
 void View::VisualizationQuads()
@@ -109,7 +110,6 @@ void View::VisualizationQuads()
 void View::VisualizationTexture()
 {
     glBegin(GL_QUADS);
-    Load2dTexture();
     qglColor(QColor(255, 255, 255));
 
     glTexCoord2f(0, 0);
@@ -133,11 +133,13 @@ void View::keyPressEvent(QKeyEvent* event)
     {
         if (layer < data.getHeight()) layer++;
         genTextureImage();
+        Load2dTexture();
     }
     else if (event->nativeVirtualKey() == Qt::Key_D)
     {
         if (!layer) layer--;
         genTextureImage();
+        Load2dTexture();
     }
     else if (event->nativeVirtualKey() == Qt::Key_N)
     {
