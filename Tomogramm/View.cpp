@@ -2,18 +2,18 @@
 
 void View::initializeGL()
 {
-    qglClearColor(Qt::white);
+    initializeOpenGLFunctions();
+    glClearColor(1., 1., 1., 1.);
     glShadeModel(GL_SMOOTH);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    state = texture;
+    state = quadstrip;
     layer = 0;
     data.load("testdata.bin");
 
     glGenTextures(1, &VBOtexture);
     genTextureImage();
-    Load2dTexture();
 }
 
 void View::resizeGL(int width_, int height_)
@@ -27,7 +27,6 @@ void View::resizeGL(int width_, int height_)
 
 void View::paintGL()
 {
-    qDebug() << "repatint" << state;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     switch (state)
     {
@@ -35,7 +34,7 @@ void View::paintGL()
         VisualizationQuads();
         break;
     case quadstrip:
-        //VisualizationQuadstrip();
+        VisualizationQuadstrip();
         break;
     case texture:
         VisualizationTexture();
@@ -43,10 +42,10 @@ void View::paintGL()
     }
 }
 
-QColor View::TransferFunction(short value)
+float View::TransferFunction(short value)
 {
-    int color = (value - data.getMin()) * 255 / (data.getMax() - data.getMin());
-    return QColor(color, color, color);
+    float color = (value - data.getMin()) * 1. / (data.getMax() - data.getMin());
+    return color;
 }
 
 void View::genTextureImage()
@@ -59,8 +58,9 @@ void View::genTextureImage()
     for (int y = 0; y < h; y++)
         for (int x = 0; x < w; x++)
         {
-            QColor c = TransferFunction(data[layer * w * h + w * y + x]);
-            textureImage.setPixelColor(x, y, c);
+            int c =(int) 255 * TransferFunction(data[layer * w * h + w * y + x]);
+            QColor color(c, c, c);
+            textureImage.setPixelColor(x, y, color);
         }
 }
 
@@ -76,7 +76,7 @@ void View::Load2dTexture()
 
 void View::VisualizationQuads()
 {
-    QColor color;
+    float color;
     int w = data.getWidth();
     int h = data.getHeight();
     
@@ -86,45 +86,71 @@ void View::VisualizationQuads()
         {
             glBegin(GL_QUADS);
 
-            color = TransferFunction(data[layer * w * h + y * w + x]);
-            qglColor(color);
-            glVertex2i(x, y);
+                color = TransferFunction(data[layer * w * h + y * w + x]);
+                glColor3f(color, color, color);
+                glVertex2i(x, y);
 
-            color = TransferFunction(data[layer * w * h + (y + 1) * w + x]);
-            qglColor(color);
-            glVertex2i(x, (y + 1));
+                color = TransferFunction(data[layer * w * h + (y + 1) * w + x]);
+                glColor3f(color, color, color);
+                glVertex2i(x, (y + 1));
 
-            color = TransferFunction(data[layer * w * h + (y + 1) * w + x + 1]);
-            qglColor(color);
-            glVertex2i((x + 1), (y + 1));
+                color = TransferFunction(data[layer * w * h + (y + 1) * w + x + 1]);
+                glColor3f(color, color, color);
+                glVertex2i((x + 1), (y + 1));
 
-            color = TransferFunction(data[layer * w * h + y * w + x + 1]);
-            qglColor(color);
-            glVertex2i((x + 1), y);
+                color = TransferFunction(data[layer * w * h + y * w + x + 1]);
+                glColor3f(color, color, color);
+                glVertex2i((x + 1), y);
 
             glEnd();
         }
     }
 }
 
+void View::VisualizationQuadstrip()
+{
+    float color;
+    int w = data.getWidth();
+    int h = data.getHeight();
+
+    for (int y = 0; y < (h - 1); y++)
+    {
+        glBegin(GL_QUAD_STRIP);
+
+        for (int x = 0; x < w; x++)
+        {
+            color = TransferFunction(data[layer * w * h + (y + 1) * w + x + 1]);
+            glColor3f(color, color, color);
+            glVertex2i(x, (y + 1));
+
+            color = TransferFunction(data[layer * w * h + y * w + x + 1]);
+            glColor3f(color, color, color);
+            glVertex2i(x, y);
+        }
+        glEnd();
+    }
+}
+
 void View::VisualizationTexture()
 {
+    Load2dTexture();
     glBegin(GL_QUADS);
-    qglColor(QColor(255, 255, 255));
+        glColor3f(1., 1., 1.);
 
-    glTexCoord2f(0, 0);
-    glVertex2i(0, 0);
+        glTexCoord2f(0, 0);
+        glVertex2i(0, 0);
 
-    glTexCoord2f(0, 1);
-    glVertex2i(0, data.getHeight());
+        glTexCoord2f(0, 1);
+        glVertex2i(0, data.getHeight());
 
-    glTexCoord2f(1, 1);
-    glVertex2i(data.getWidth(), data.getHeight());
+        glTexCoord2f(1, 1);
+        glVertex2i(data.getWidth(), data.getHeight());
 
-    glTexCoord2f(1, 0);
-    glVertex2i(data.getWidth(), 0);
+        glTexCoord2f(1, 0);
+        glVertex2i(data.getWidth(), 0);
 
     glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void View::keyPressEvent(QKeyEvent* event)
@@ -132,18 +158,32 @@ void View::keyPressEvent(QKeyEvent* event)
     if (event->nativeVirtualKey() == Qt::Key_U)
     {
         if (layer < data.getDepth() - 1) layer++;
+        qDebug() << layer;
         genTextureImage();
-        Load2dTexture();
     }
     else if (event->nativeVirtualKey() == Qt::Key_D)
     {
         if (layer) layer--;
+        qDebug() << layer;
         genTextureImage();
-        Load2dTexture();
     }
     else if (event->nativeVirtualKey() == Qt::Key_N)
     {
-
+        switch (state)
+        {
+        case quads:
+            state = quadstrip;
+            qDebug() << "Quadstrip";
+            break;
+        case quadstrip:
+            state = texture;
+            qDebug() << "Texture";
+            break;
+        case texture:
+            state = quads;
+            qDebug() << "Quads";
+            break;
+        }
     }
     update();
 }

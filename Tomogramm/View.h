@@ -3,13 +3,14 @@
 #pragma comment (lib, "opengl32.lib")
 
 #include <qdebug.h>
-
-#include <QGLWidget>
+#include <QOpenGLWidget>
 #include <QKeyEvent>
+#include <QOpenGLFunctions>
+#include <QOpenGLTexture>
 
 #include "Data.h"
 
-class View : public QGLWidget
+class View : public QOpenGLWidget, protected QOpenGLFunctions
 {
 public:
     Data data;
@@ -30,12 +31,13 @@ public:
     void resizeGL(int width_, int height_);
     void paintGL();
 
-    QColor TransferFunction(short value);
+    float TransferFunction(short value);
 
     void genTextureImage();
     void Load2dTexture();
     
     void VisualizationQuads();
+    void VisualizationQuadstrip();
     void VisualizationTexture();
 
     void keyPressEvent(QKeyEvent* event);
