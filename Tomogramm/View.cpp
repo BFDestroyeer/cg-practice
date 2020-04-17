@@ -10,7 +10,8 @@ void View::initializeGL()
 
     state = quadstrip;
     layer = 0;
-    data.load("testdata.bin");
+    axis = 'z';
+    data.load("testdata.bin", axis);
 
     glGenTextures(1, &VBOtexture);
     genTextureImage();
@@ -184,6 +185,25 @@ void View::keyPressEvent(QKeyEvent* event)
             qDebug() << "Quads";
             break;
         }
+    }
+    else if (event->nativeVirtualKey() == Qt::Key_J)
+    {
+        switch (axis)
+        {
+        case 'x':
+            axis = 'y';
+            break;
+        case 'y':
+            axis = 'z';
+            break;
+        case 'z':
+            axis = 'x';
+            break;
+        }
+        qDebug() << "Axis: " << axis;
+        data.load("testdata.bin", axis);
+        layer = 0;
+        genTextureImage();
     }
     update();
 }

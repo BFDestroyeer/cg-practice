@@ -15,6 +15,7 @@ class View : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     Data data;
     int layer;
+    char axis;
 
     enum State
     {
