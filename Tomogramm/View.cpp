@@ -131,13 +131,13 @@ void View::keyPressEvent(QKeyEvent* event)
 {
     if (event->nativeVirtualKey() == Qt::Key_U)
     {
-        if (layer < data.getHeight()) layer++;
+        if (layer < data.getDepth() - 1) layer++;
         genTextureImage();
         Load2dTexture();
     }
     else if (event->nativeVirtualKey() == Qt::Key_D)
     {
-        if (!layer) layer--;
+        if (layer) layer--;
         genTextureImage();
         Load2dTexture();
     }

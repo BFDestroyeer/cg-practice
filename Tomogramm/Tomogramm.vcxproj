@@ -82,14 +82,7 @@
   <ItemGroup>
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Tomogramm.cpp" />
     <ClCompile Include="View.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="Tomogramm.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="Tomogramm.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Tomogramm.qrc" />
