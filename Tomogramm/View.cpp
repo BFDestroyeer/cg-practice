@@ -119,11 +119,11 @@ void View::VisualizationQuadstrip()
 
         for (int x = 0; x < w; x++)
         {
-            color = TransferFunction(data[layer * w * h + (y + 1) * w + x + 1]);
+            color = TransferFunction(data[layer * w * h + (y + 1) * w + x]);
             glColor3f(color, color, color);
             glVertex2i(x, (y + 1));
 
-            color = TransferFunction(data[layer * w * h + y * w + x + 1]);
+            color = TransferFunction(data[layer * w * h + y * w + x]);
             glColor3f(color, color, color);
             glVertex2i(x, y);
         }

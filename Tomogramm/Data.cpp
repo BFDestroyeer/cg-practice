@@ -46,33 +46,102 @@ int Data::getDepth()
     return depth;
 }
 
-int Data::load(const std::string& path)
+int Data::load(const std::string& path, char direction)
 {
     std::ifstream file;
     file.open(path, std::ios::binary);
     if (!file.is_open()) return 1;
-
-    void* buffer[4];
-    file.read((char*) buffer, sizeof(int));
-    width = *((int*)buffer);
-    file.read((char*)buffer, sizeof(int));
-    height = *((int*)buffer);
-    file.read((char*)buffer, sizeof(int));
-    depth = *((int*)buffer);
-    file.read((char*)buffer, 3 * sizeof(float));
-
-    size_t size = (size_t)width * (size_t)height * (size_t) depth;
-    if (density != nullptr) delete[] density;
-    density = new short[size];
-    max = 0; min = INT16_MAX;
-    for (size_t i = 0; i < size; i++)
+    if (direction == 'z')
     {
-        file.read((char*)buffer, sizeof(short));
-        density[i] = *((short*)buffer);
-        if (density[i] < min) min = density[i];
-        if (density[i] > max) max = density[i];
+        void* buffer[4];
+        file.read((char*)buffer, sizeof(int));
+        width = *((int*)buffer);
+        file.read((char*)buffer, sizeof(int));
+        height = *((int*)buffer);
+        file.read((char*)buffer, sizeof(int));
+        depth = *((int*)buffer);
+        file.read((char*)buffer, 3 * sizeof(float));
+
+        size_t size = (size_t)width * (size_t)height * (size_t)depth;
+        if (density != nullptr) delete[] density;
+        density = new short[size];
+        max = 0; min = INT16_MAX;
+        for (size_t i = 0; i < size; i++)
+        {
+            file.read((char*)buffer, sizeof(short));
+            density[i] = *((short*)buffer);
+            if (density[i] < min) min = density[i];
+            if (density[i] > max) max = density[i];
+        }
+        return 0;
     }
-    return 0;
+    else if (direction == 'x')
+    {
+        void* buffer[4];
+        file.read((char*)buffer, sizeof(int));
+        width = *((int*)buffer);
+        file.read((char*)buffer, sizeof(int));
+        height = *((int*)buffer);
+        file.read((char*)buffer, sizeof(int));
+        depth = *((int*)buffer);
+        file.read((char*)buffer, 3 * sizeof(float));
+
+        size_t size = (size_t)width * (size_t)height * (size_t)depth;
+        if (density != nullptr) delete[] density;
+        density = new short[size];
+        max = 0; min = INT16_MAX;
+        for (size_t  z = 0; z < depth; z++)
+        {
+            for (size_t y = 0; y < height; y++)
+            {
+                for (size_t x = 0; x < width; x++)
+                {
+                    file.read((char*)buffer, sizeof(short));
+                    density[y * depth * width + z * width + x] = *((short*)buffer);
+                    if (density[y * depth * width + z * width + x] < min) min = *((short*)buffer);
+                    if (density[y * depth * width + z * width + x] > max) max = *((short*)buffer);
+                }
+            }
+        }
+        int temp = height;
+        height = depth;
+        depth = temp;
+        return 0;
+    }
+    else
+    {
+        void* buffer[4];
+        file.read((char*)buffer, sizeof(int));
+        width = *((int*)buffer);
+        file.read((char*)buffer, sizeof(int));
+        height = *((int*)buffer);
+        file.read((char*)buffer, sizeof(int));
+        depth = *((int*)buffer);
+        file.read((char*)buffer, 3 * sizeof(float));
+
+        size_t size = (size_t)width * (size_t)height * (size_t)depth;
+        if (density != nullptr) delete[] density;
+        density = new short[size];
+        max = 0; min = INT16_MAX;
+        for (size_t z = 0; z < depth; z++)
+        {
+            for (size_t y = 0; y < height; y++)
+            {
+                for (size_t x = 0; x < width; x++)
+                {
+                    file.read((char*)buffer, sizeof(short));
+                    density[x * depth * height + z * height + y] = *((short*)buffer);
+                    if (density[x * depth * height + z * height + y] < min) min = *((short*)buffer);
+                    if (density[x * depth * height + z * height + y] > max) max = *((short*)buffer);
+                }
+            }
+        }
+        int temp = height;
+        height = depth;
+        depth = width;
+        width = temp;
+        return 0;
+    }
 }
 
 char Data::operator[](size_t id) const

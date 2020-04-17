@@ -30,7 +30,7 @@ public:
     int getHeight();
     int getDepth();
 
-    int load(const std::string& path);
+    int load(const std::string& path, char direction = 'y');
 
     char operator[](size_t id) const;
 };
