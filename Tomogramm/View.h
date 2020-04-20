@@ -31,6 +31,8 @@ public:
     GLuint VBOtexture;
     QImage textureImage;
 
+    View(QWidget* parent = nullptr);
+
     void initializeGL();
     void resizeGL(int width_, int height_);
     void paintGL();

@@ -1,5 +1,14 @@
 #include "View.h"
 
+View::View(QWidget* parent) : QOpenGLWidget(parent)
+{
+    QSurfaceFormat format;
+    format.setDepthBufferSize(24);
+    format.setVersion(3, 5);
+    format.setProfile(QSurfaceFormat::CoreProfile);
+    setFormat(format);
+}
+
 void View::initializeGL()
 {
     initializeOpenGLFunctions();
@@ -11,7 +20,7 @@ void View::initializeGL()
     state = quadstrip;
     layer = 0;
     axis = 'z';
-    data.load("FOURDIX-diastolic.bin", axis);
+    data.load("testdata.bin", axis);
 
     max = data.getMax();
     min = data.getMin();
