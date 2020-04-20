@@ -8,6 +8,8 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLTexture>
 
+#include <string>
+
 #include "Data.h"
 
 class View : public QOpenGLWidget, protected QOpenGLFunctions
@@ -33,6 +35,9 @@ public:
 
     View(QWidget* parent = nullptr);
 
+    
+
+protected:
     void initializeGL();
     void resizeGL(int width_, int height_);
     void paintGL();
@@ -47,6 +52,13 @@ public:
     void VisualizationQuadstrip();
     void VisualizationTexture();
 
-    void keyPressEvent(QKeyEvent* event);
+public:
+    void setLayer(int layer_);
+    std::string nextMode();
+    int setMin(int min_);
+    int setMax(int max_);
+
+    int getMin();
+    int getMax();
 };
 

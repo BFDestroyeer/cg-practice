@@ -176,56 +176,56 @@ void View::VisualizationTexture()
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void View::keyPressEvent(QKeyEvent* event)
+void View::setLayer(int layer_)
 {
-    if (event->nativeVirtualKey() == Qt::Key_U)
+    if ((layer_ >= 0) && (layer_ < data.getDepth()))
     {
-        if (layer < data.getDepth() - 1) layer++;
-        qDebug() << layer;
+        layer = layer_;
         genTextureImage();
+        update();
     }
-    else if (event->nativeVirtualKey() == Qt::Key_D)
+}
+
+std::string View::nextMode()
+{
+    switch (state)
     {
-        if (layer) layer--;
-        qDebug() << layer;
-        genTextureImage();
+    case quads:
+        state = quadstrip;
+        return "Quadstrip";
+    case quadstrip:
+        state = texture;
+        return "Texture";
+    case texture:
+        state = quads;
+        return "Quads";
     }
-    else if (event->nativeVirtualKey() == Qt::Key_N)
+}
+
+int View::setMin(int min_)
+{
+    if (min_ >= data.getMin() && min_ < max)
     {
-        switch (state)
-        {
-        case quads:
-            state = quadstrip;
-            qDebug() << "Quadstrip";
-            break;
-        case quadstrip:
-            state = texture;
-            qDebug() << "Texture";
-            break;
-        case texture:
-            state = quads;
-            qDebug() << "Quads";
-            break;
-        }
+        min = min_;
     }
-    else if (event->nativeVirtualKey() == Qt::Key_J)
+    return min;
+}
+
+int View::setMax(int max_)
+{
+    if (max_ <= data.getMax() && max_ > min)
     {
-        switch (axis)
-        {
-        case 'x':
-            axis = 'y';
-            break;
-        case 'y':
-            axis = 'z';
-            break;
-        case 'z':
-            axis = 'x';
-            break;
-        }
-        qDebug() << "Axis: " << axis;
-        data.load("testdata.bin", axis);
-        layer = 0;
-        genTextureImage();
+        max = max_;
     }
-    update();
+    return max;
+}
+
+int View::getMin()
+{
+    return min;
+}
+
+int View::getMax()
+{
+    return max;
 }
