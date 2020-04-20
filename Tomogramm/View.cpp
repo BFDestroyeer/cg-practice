@@ -229,3 +229,9 @@ int View::getMax()
 {
     return max;
 }
+
+void View::load(QString path_, char direction_)
+{
+    data.load(path_.toStdString(), direction_);
+    update();
+}

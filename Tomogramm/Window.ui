@@ -41,7 +41,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>60</y>
+      <y>70</y>
       <width>80</width>
       <height>20</height>
      </rect>
@@ -51,7 +51,7 @@
     <property name="geometry">
      <rect>
       <x>120</x>
-      <y>60</y>
+      <y>70</y>
       <width>80</width>
       <height>20</height>
      </rect>
@@ -61,7 +61,7 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>20</y>
+      <y>10</y>
       <width>80</width>
       <height>20</height>
      </rect>
@@ -74,7 +74,7 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>20</y>
+      <y>10</y>
       <width>180</width>
       <height>20</height>
      </rect>
@@ -87,13 +87,39 @@
     <property name="geometry">
      <rect>
       <x>220</x>
-      <y>60</y>
+      <y>70</y>
       <width>80</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
      <string>Load</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>40</y>
+      <width>80</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Axis</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>180</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TextLabel</string>
     </property>
    </widget>
   </widget>
@@ -172,11 +198,45 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Window</receiver>
+   <slot>changeAxis()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>233</x>
+     <y>48</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>212</x>
+     <y>47</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Window</receiver>
+   <slot>load()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>239</x>
+     <y>86</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>212</x>
+     <y>94</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>changeLayer(int)</slot>
   <slot>changeMode()</slot>
   <slot>setMin(QString)</slot>
   <slot>setMax(QString)</slot>
+  <slot>changeAxis()</slot>
+  <slot>load()</slot>
  </slots>
 </ui>

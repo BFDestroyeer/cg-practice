@@ -60,5 +60,7 @@ public:
 
     int getMin();
     int getMax();
+
+    void load(QString path_, char direction_);
 };
 
