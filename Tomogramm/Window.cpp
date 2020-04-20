@@ -60,6 +60,6 @@ void Window::setMax(QString max_)
 
 void Window::load()
 {
-    QFileDialog dialog;
-    dialog.show();
+    path = QFileDialog::getOpenFileName();
+    ui.openGLWidget->load(path, direction);
 }
