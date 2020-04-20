@@ -53,26 +53,30 @@ int Data::load(const std::string& path, char direction)
     if (!file.is_open()) return 1;
     if (direction == 'z')
     {
-        void* buffer[4];
-        file.read((char*)buffer, sizeof(int));
-        width = *((int*)buffer);
-        file.read((char*)buffer, sizeof(int));
-        height = *((int*)buffer);
-        file.read((char*)buffer, sizeof(int));
-        depth = *((int*)buffer);
-        file.read((char*)buffer, 3 * sizeof(float));
+        file.read((char*)&width, sizeof(width));
+        file.read((char*)&height, sizeof(height));
+        file.read((char*)&depth, sizeof(depth));
+        file.read((char*)&x, sizeof(x));
+        file.read((char*)&y, sizeof(y));
+        file.read((char*)&z, sizeof(z));
 
-        size_t size = (size_t)width * (size_t)height * (size_t)depth;
+        int size = width * height * depth;
         if (density != nullptr) delete[] density;
         density = new short[size];
         max = 0; min = INT16_MAX;
-        for (size_t i = 0; i < size; i++)
+        for (int i = 0; i < size; i++)
         {
-            file.read((char*)buffer, sizeof(short));
-            density[i] = *((short*)buffer);
-            if (density[i] < min) min = density[i];
-            if (density[i] > max) max = density[i];
+            file.read((char*)(density + i), sizeof(short));
+            if (density[i] < min)
+            {
+                min = density[i];
+            }
+            if (density[i] > max) 
+            {
+                max = density[i];
+            }
         }
+        file.close();
         return 0;
     }
     else if (direction == 'x')
@@ -98,7 +102,7 @@ int Data::load(const std::string& path, char direction)
                 {
                     file.read((char*)buffer, sizeof(short));
                     density[y * depth * width + z * width + x] = *((short*)buffer);
-                    if (density[y * depth * width + z * width + x] < min) min = *((short*)buffer);
+                    if (density[y * depth * width + z * width + x] < min)min = *((short*)buffer);
                     if (density[y * depth * width + z * width + x] > max) max = *((short*)buffer);
                 }
             }

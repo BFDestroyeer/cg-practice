@@ -11,7 +11,10 @@ void View::initializeGL()
     state = quadstrip;
     layer = 0;
     axis = 'z';
-    data.load("testdata.bin", axis);
+    data.load("FOURDIX-diastolic.bin", axis);
+
+    max = data.getMax();
+    min = data.getMin();
 
     glGenTextures(1, &VBOtexture);
     genTextureImage();
@@ -45,8 +48,16 @@ void View::paintGL()
 
 float View::TransferFunction(short value)
 {
-    float color = (value - data.getMin()) * 1. / (data.getMax() - data.getMin());
+    short value_ = Clamp(value, min, max);
+    float color = ((float)value_ - (float)min) / ((float)max - (float)min);
     return color;
+}
+
+short View::Clamp(short value, short min, short max)
+{
+    if (value < min) return min;
+    else if (value > max) return max;
+    return value;
 }
 
 void View::genTextureImage()
@@ -54,12 +65,14 @@ void View::genTextureImage()
     int w = data.getWidth();
     int h = data.getHeight();
 
+    int min_ = INT_MAX, max_ = INT_MIN;
+
     textureImage = QImage(w, h, QImage::Format_RGB32);
 
     for (int y = 0; y < h; y++)
         for (int x = 0; x < w; x++)
         {
-            int c =(int) 255 * TransferFunction(data[layer * w * h + w * y + x]);
+            int c = (int)255 * TransferFunction(data[layer * w * h + w * y + x]);
             QColor color(c, c, c);
             textureImage.setPixelColor(x, y, color);
         }

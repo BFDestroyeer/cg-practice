@@ -17,6 +17,9 @@ public:
     int layer;
     char axis;
 
+    short max;
+    short min;
+
     enum State
     {
         quads,
@@ -33,6 +36,7 @@ public:
     void paintGL();
 
     float TransferFunction(short value);
+    short Clamp(short value, short min, short max);
 
     void genTextureImage();
     void Load2dTexture();
