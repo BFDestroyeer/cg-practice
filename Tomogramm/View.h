@@ -60,6 +60,7 @@ public:
 
     int getMin();
     int getMax();
+    int getDepth();
 
     void load(QString path_, char direction_);
 };

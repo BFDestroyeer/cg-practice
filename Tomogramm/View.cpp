@@ -230,6 +230,11 @@ int View::getMax()
     return max;
 }
 
+int View::getDepth()
+{
+    return data.getDepth();
+}
+
 void View::load(QString path_, char direction_)
 {
     data.load(path_.toStdString(), direction_);

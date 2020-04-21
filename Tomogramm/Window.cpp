@@ -44,6 +44,7 @@ void Window::changeAxis()
         break;
     }
     ui.openGLWidget->load(path, direction);
+    ui.horizontalSlider->setMaximum(ui.openGLWidget->getDepth());
 }
 
 void Window::setMin(QString min_)
@@ -62,4 +63,5 @@ void Window::load()
 {
     path = QFileDialog::getOpenFileName();
     ui.openGLWidget->load(path, direction);
+    ui.horizontalSlider->setMaximum(ui.openGLWidget->getDepth());
 }
