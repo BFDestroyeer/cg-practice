@@ -19,8 +19,7 @@ void View::initializeGL()
 
     state = quadstrip;
     layer = 0;
-    axis = 'z';
-    load("testdata.bin", axis);
+    load("testdata.bin", 'z');
 
     max = data.getMax();
     min = data.getMin();
@@ -253,5 +252,9 @@ void View::load(QString path_, char direction_)
         horizontal_scale = data.getX();
         break;
     }
+    horizontal_scale *= 512 / (data.getHeight() * vertical_scale);
+    vertical_scale *= 512 / (data.getHeight() * vertical_scale);
+    
+    layer = 0;
     update();
 }
