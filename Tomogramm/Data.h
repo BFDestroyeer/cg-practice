@@ -31,6 +31,10 @@ public:
     int getHeight();
     int getDepth();
 
+    int getX();
+    int getY();
+    int getZ();
+
     int load(const std::string& path, char direction = 'z');
 
     char operator[](size_t id) const;
