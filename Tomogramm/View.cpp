@@ -20,7 +20,7 @@ void View::initializeGL()
     state = quadstrip;
     layer = 0;
     axis = 'z';
-    data.load("testdata.bin", axis);
+    load("testdata.bin", axis);
 
     max = data.getMax();
     min = data.getMin();
@@ -111,19 +111,19 @@ void View::VisualizationQuads()
 
                 color = TransferFunction(data[layer * w * h + y * w + x]);
                 glColor3f(color, color, color);
-                glVertex2i(x, y);
+                glVertex2i(x * horizontal_scale, y * vertical_scale);
 
                 color = TransferFunction(data[layer * w * h + (y + 1) * w + x]);
                 glColor3f(color, color, color);
-                glVertex2i(x, (y + 1));
+                glVertex2i(x * horizontal_scale, (y + 1) * vertical_scale);
 
                 color = TransferFunction(data[layer * w * h + (y + 1) * w + x + 1]);
                 glColor3f(color, color, color);
-                glVertex2i((x + 1), (y + 1));
+                glVertex2i((x + 1) * horizontal_scale, (y + 1) * vertical_scale);
 
                 color = TransferFunction(data[layer * w * h + y * w + x + 1]);
                 glColor3f(color, color, color);
-                glVertex2i((x + 1), y);
+                glVertex2i((x + 1) * horizontal_scale, y * vertical_scale);
 
             glEnd();
         }
@@ -144,11 +144,11 @@ void View::VisualizationQuadstrip()
         {
             color = TransferFunction(data[layer * w * h + (y + 1) * w + x]);
             glColor3f(color, color, color);
-            glVertex2i(x, (y + 1));
+            glVertex2i(x * horizontal_scale, (y + 1) * vertical_scale);
 
             color = TransferFunction(data[layer * w * h + y * w + x]);
             glColor3f(color, color, color);
-            glVertex2i(x, y);
+            glVertex2i(x * horizontal_scale, y * vertical_scale);
         }
         glEnd();
     }
@@ -164,13 +164,13 @@ void View::VisualizationTexture()
         glVertex2i(0, 0);
 
         glTexCoord2f(0, 1);
-        glVertex2i(0, data.getHeight());
+        glVertex2i(0, data.getHeight() * vertical_scale);
 
         glTexCoord2f(1, 1);
-        glVertex2i(data.getWidth(), data.getHeight());
+        glVertex2i(data.getWidth() * horizontal_scale, data.getHeight() * vertical_scale);
 
         glTexCoord2f(1, 0);
-        glVertex2i(data.getWidth(), 0);
+        glVertex2i(data.getWidth() * horizontal_scale, 0);
 
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -238,5 +238,20 @@ int View::getDepth()
 void View::load(QString path_, char direction_)
 {
     data.load(path_.toStdString(), direction_);
+    switch (direction_)
+    {
+    case 'x':
+        vertical_scale = data.getZ();
+        horizontal_scale = data.getY();
+        break;
+    case 'y':
+        vertical_scale = data.getZ();
+        horizontal_scale = data.getX();
+        break;
+    case 'z':
+        vertical_scale = data.getY();
+        horizontal_scale = data.getX();
+        break;
+    }
     update();
 }

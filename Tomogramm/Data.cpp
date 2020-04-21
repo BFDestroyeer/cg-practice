@@ -148,22 +148,22 @@ int Data::load(const std::string& path, char direction)
     }
 }
 
-int Data::getX()
+float Data::getX()
 {
     return x;
 }
 
-int Data::getY()
+float Data::getY()
 {
     return y;
 }
 
-int Data::getZ()
+float Data::getZ()
 {
     return z;
 }
 
-char Data::operator[](size_t id) const
+short Data::operator[](size_t id) const
 {
     if (id < (size_t)width * (size_t)height * (size_t)depth)
     {

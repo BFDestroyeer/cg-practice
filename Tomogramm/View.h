@@ -22,6 +22,9 @@ public:
     short max;
     short min;
 
+    float vertical_scale;
+    float horizontal_scale;
+
     enum State
     {
         quads,
