@@ -26,6 +26,8 @@ void ShaderWidget::initializeGL()
 {
     glClearColor(1.0, 1.0, 1.0, 1.0);
 
+    //--------Set up shaders----------------------------------------------------
+    
     QOpenGLShader vShader(QOpenGLShader::Vertex);
     vShader.compileSourceFile("raytracing.vert");
 
@@ -44,11 +46,32 @@ void ShaderWidget::initializeGL()
 
     qDebug() << QString("Log program");
     qDebug() << m_program.log();
+
+    //--------Set up uniform variables------------------------------------------
+
+    if (!m_program.bind()) qWarning("Error bind program shader");
+
+    m_program.setUniformValue("camera.position", QVector3D(0.0, 0.0, -10));
+    m_program.setUniformValue("camera.view",     QVector3D(0.0, 0.0, 1.0));
+    m_program.setUniformValue("camera.up",       QVector3D(0.0, 1.0, 0.0));
+    m_program.setUniformValue("camera.side",     QVector3D(1.0, 0.0, 0.0));
+
+    m_program.setUniformValue("scale", QVector2D(width(), height()));
+
+    m_program.release();
 }
 
 void ShaderWidget::resizeGL(int nWidth, int nHeight)
 {
     glViewport(0, 0, nWidth, nHeight);
+
+    //--------Update uniform variables------------------------------------------
+
+    if (!m_program.bind()) qWarning("Error bind program shader");
+
+    m_program.setUniformValue("scale", QVector2D(width(), height()));
+
+    m_program.release();
 }
 
 void ShaderWidget::paintGL()
