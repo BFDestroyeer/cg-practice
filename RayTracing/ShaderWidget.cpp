@@ -2,6 +2,7 @@
 
 ShaderWidget::ShaderWidget(QWidget* parent)
 {
+    //--------Set up verticies--------------------------------------------------
     vert_data = new GLfloat[12];
     vert_data[0] = -1;
     vert_data[1] = -1;
