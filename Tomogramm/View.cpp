@@ -12,7 +12,7 @@ View::View(QWidget* parent) : QOpenGLWidget(parent)
 void View::initializeGL()
 {
     initializeOpenGLFunctions();
-    glClearColor(1., 1., 1., 1.);
+    glClearColor(1.0, 1.0, 1.0, 1.0);
     glShadeModel(GL_SMOOTH);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -32,7 +32,7 @@ void View::resizeGL(int width_, int height_)
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0., data.getWidth() - 1, 0., data.getHeight() - 1, -1., 1.);
+    glOrtho(0, 800, 0, 600, -1.0, 1.0);
     glViewport(0, 0, width_, height_);
     update();
 }
@@ -157,7 +157,7 @@ void View::VisualizationTexture()
 {
     Load2dTexture();
     glBegin(GL_QUADS);
-        glColor3f(1., 1., 1.);
+        glColor3f(1.0, 1.0, 1.0);
 
         glTexCoord2f(0, 0);
         glVertex2i(0, 0);
@@ -252,8 +252,9 @@ void View::load(QString path_, char direction_)
         horizontal_scale = data.getX();
         break;
     }
-    horizontal_scale *= 512 / (data.getHeight() * vertical_scale);
-    vertical_scale *= 512 / (data.getHeight() * vertical_scale);
+
+    horizontal_scale *= 800 / (data.getHeight() * vertical_scale);
+    vertical_scale *= 600 / (data.getHeight() * vertical_scale);
     
     layer = 0;
     update();
