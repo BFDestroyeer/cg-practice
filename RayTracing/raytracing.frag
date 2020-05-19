@@ -99,7 +99,7 @@ uniform vec2 scale;
 Ray GenerateRay (Camera camera);
 bool IntersectSphere (Sphere sphere, Ray ray, float start, float final, out float time);
 bool Intersect (Ray ray, float start, float final, inout Intersection intersect);
-vec3 Phong (Intersection interset, Light currLight);
+vec3 Phong (Intersection interset, Light currLight, float shadow);
 float Shadow (Light currLight, Intersection intersect);
 vec4 Raytrace (Ray primary_ray);
 
@@ -153,6 +153,7 @@ bool Intersect (Ray ray, float start, float final, inout Intersection intersect)
 			intersect.point = ray.origin + ray.direction * time;
 			intersect.normal = normalize(intersect.point - sphere_data[i].center);
 			intersect.color = sphere_data[i].color;
+				intersect.LightCoeffs = vec4(sphere_data[i].color, 0); /*???*/
 			intersect.material_idx = sphere_data[i].material_idx;
 			result = true;
 		}
@@ -160,14 +161,15 @@ bool Intersect (Ray ray, float start, float final, inout Intersection intersect)
 	return result;
 }
 
-vec3 Phong (Intersection intersect, Light currLight)
+vec3 Phong (Intersection intersect, Light currLight, float shadow)
 {
 	vec3 light = normalize (currLight.position - intersect.point);
 	float diffuse = max(dot(light, intersect.normal), 0.0);
 	vec3 view = normalize(camera.position - intersect.point);
 	vec3 reflected = reflect(-view, intersect.normal);
 	float specular = pow(max(dot(reflected, light), 0.0), intersect.LightCoeffs.w);
-	return intersect.LightCoeffs.x * intersect.color + intersect.LightCoeffs.y * diffuse * intersect.color +
+	return intersect.LightCoeffs.x * intersect.color + 
+		intersect.LightCoeffs.y * diffuse * intersect.color +
 		intersect.LightCoeffs.z * specular /** Unit*/;
 }
 
@@ -179,10 +181,10 @@ float Shadow (Light currLight, Intersection intersect)
 	Ray shadowRay = Ray(intersect.point + direction * EPSILON, direction);
 	Intersection shadowIntersect;
 	shadowIntersect.time = BIG;
-	if (Raytrace(shadowRay) == vec4(0, 0, 0 ,0))
+	/*if (Raytrace(shadowRay) == vec4(0, 0, 0 ,0))
 	{
 		shadowing = 0.0;
-	}
+	}*/
 	return shadowing;
 }
 
@@ -201,9 +203,8 @@ vec4 Raytrace (Ray primary_ray)
 
 	if (Intersect(ray, start, final, intersect))
 	{
-		//float shadowing = Shadow(light_pos, intersect);
-		//resultColor += vec4(Phong(intersect, light), 0);
-		resultColor += vec4(1, 0, 0, 0);
+		float shadowing = Shadow(light, intersect);
+		resultColor += vec4(Phong(intersect, light, shadowing), 0);
 	}
 	return resultColor;
 }
