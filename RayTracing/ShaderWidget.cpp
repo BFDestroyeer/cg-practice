@@ -6,16 +6,23 @@ ShaderWidget::ShaderWidget(QWidget* parent)
     vert_data = new GLfloat[12];
     vert_data[0] = -1;
     vert_data[1] = -1;
-    vert_data[2] =  0;
-    vert_data[3] =  1;
+    vert_data[2] = 0;
+    vert_data[3] = 1;
     vert_data[4] = -1;
-    vert_data[5] =  0;
-    vert_data[6] =  1;
-    vert_data[7] =  1;
-    vert_data[8] =  0;
+    vert_data[5] = 0;
+    vert_data[6] = 1;
+    vert_data[7] = 1;
+    vert_data[8] = 0;
     vert_data[9] = -1;
-    vert_data[10] =  1;
-    vert_data[11] =  0;
+    vert_data[10] = 1;
+    vert_data[11] = 0;
+
+    //--------Set up objects----------------------------------------------------
+    all_spheres = new Sphere;
+    all_spheres->position = QVector3D(0, 0, 0);
+    all_spheres->radius = 1.0;
+    all_spheres->color = QVector3D(1.0, 0.0, 0.0);
+    all_spheres->material_idx = 0;
 }
 
 ShaderWidget::~ShaderWidget()
@@ -58,8 +65,19 @@ void ShaderWidget::initializeGL()
     m_program.setUniformValue("camera.side",     QVector3D(1.0, 0.0, 0.0));
 
     m_program.setUniformValue("scale", QVector2D(width(), height()));
-
     m_program.release();
+
+    //--------Set up buffer-----------------------------------------------------
+
+    QOpenGLFunctions_4_3_Core * functions =
+        QOpenGLContext::currentContext()->versionFunctions<QOpenGLFunctions_4_3_Core>();
+    GLuint ssbo = 0;
+    functions->glGenBuffers(1, &ssbo);
+    functions->glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
+    //1 = size of spheres
+    functions->glBufferData(GL_SHADER_STORAGE_BUFFER, 1 * sizeof(Sphere), all_spheres, GL_DYNAMIC_COPY);
+
+    functions->glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, ssbo);
 }
 
 void ShaderWidget::resizeGL(int nWidth, int nHeight)

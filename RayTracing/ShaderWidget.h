@@ -5,6 +5,9 @@
 #include <qopenglwidget.h>
 
 #include <qopenglshaderprogram.h>
+#include <qopenglfunctions_4_3_core.h>
+
+#include "Objects.h"
 
 class ShaderWidget : public QOpenGLWidget 
 {
@@ -15,6 +18,8 @@ private:
     int vert_data_location;
 
     int vbo_position;
+
+    Sphere* all_spheres;
 
 protected:
     void initializeGL();
