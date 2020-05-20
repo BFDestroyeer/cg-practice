@@ -17,12 +17,8 @@ void View::initializeGL()
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    state = quadstrip;
+    state = blank;
     layer = 0;
-    load("testdata.bin", 'z');
-
-    max = data.getMax();
-    min = data.getMin();
 
     glGenTextures(1, &VBOtexture);
     genTextureImage();
@@ -50,6 +46,9 @@ void View::paintGL()
         break;
     case texture:
         VisualizationTexture();
+        break;
+    case blank:
+        VisualizationBlank();
         break;
     }
 }
@@ -163,13 +162,31 @@ void View::VisualizationTexture()
         glVertex2i(0, 0);
 
         glTexCoord2f(0, 1);
-        glVertex2i(0, data.getHeight() * vertical_scale);
+        glVertex2i(0, (data.getHeight() - 1) * vertical_scale);
 
         glTexCoord2f(1, 1);
-        glVertex2i(data.getWidth() * horizontal_scale, data.getHeight() * vertical_scale);
+        glVertex2i((data.getWidth() - 1) * horizontal_scale, (data.getHeight() - 1) * vertical_scale);
 
         glTexCoord2f(1, 0);
-        glVertex2i(data.getWidth() * horizontal_scale, 0);
+        glVertex2i((data.getWidth() - 1) * horizontal_scale, 0);
+
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void View::VisualizationBlank()
+{
+    Load2dTexture();
+    glBegin(GL_QUADS);
+    glColor3f(0.0, 0.0, 0.0);
+
+    glVertex2i(0, 0);
+
+    glVertex2i(0, 600);
+
+    glVertex2i(800, 600);
+
+    glVertex2i(800, 0);
 
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -177,7 +194,7 @@ void View::VisualizationTexture()
 
 void View::setLayer(int layer_)
 {
-    if ((layer_ >= 0) && (layer_ < data.getDepth()))
+    if ((layer_ >= 0) && (layer_ < data.getDepth()) && (state != blank))
     {
         layer = layer_;
         genTextureImage();
@@ -198,6 +215,8 @@ std::string View::nextMode()
     case texture:
         state = quads;
         return "Quads";
+    case blank:
+        return "";
     }
 }
 
@@ -253,9 +272,18 @@ void View::load(QString path_, char direction_)
         break;
     }
 
+    if (state == blank)
+    {
+        state = texture;
+    }
+
+    min = data.getMin();
+    max = data.getMax();
+
     horizontal_scale *= 800 / (data.getHeight() * vertical_scale);
     vertical_scale *= 600 / (data.getHeight() * vertical_scale);
     
     layer = 0;
+    genTextureImage();
     update();
 }

@@ -28,7 +28,8 @@ public:
     {
         quads,
         quadstrip,
-        texture
+        texture,
+        blank
     };
     State state;
 
@@ -53,6 +54,7 @@ protected:
     void VisualizationQuads();
     void VisualizationQuadstrip();
     void VisualizationTexture();
+    void VisualizationBlank();
 
 public:
     void setLayer(int layer_);

@@ -4,11 +4,10 @@ Window::Window(QWidget *parent) : QMainWindow(parent)
 {
     ui.setupUi(this);
 
-    path = "testdata.bin";
-    direction = 'z';
+    direction = ' ';
 
-    ui.label->setText("Quadstrip");
-    ui.label_2->setText("z");
+    ui.label->setText("");
+    ui.label_2->setText("");
 }
 
 Window::~Window()
@@ -28,6 +27,10 @@ void Window::changeMode()
 
 void Window::changeAxis()
 {
+    if (direction == ' ')
+    {
+        return;
+    }
     switch (direction)
     {
     case 'x':
@@ -51,17 +54,34 @@ void Window::setMin(QString min_)
 {
     int min = min_.toInt();
     ui.openGLWidget->setMin(min);
+    ui.lineEdit->setText(QString::fromStdString(std::to_string(ui.openGLWidget->getMin())));
 }
 
 void Window::setMax(QString max_)
 {
     int max = max_.toInt();
     ui.openGLWidget->setMax(max);
+    ui.lineEdit_2->setText(QString::fromStdString(std::to_string(ui.openGLWidget->getMax())));
 }
 
 void Window::load()
 {
-    path = QFileDialog::getOpenFileName();
-    ui.openGLWidget->load(path, direction);
-    ui.horizontalSlider->setMaximum(ui.openGLWidget->getDepth());
+    if ((path = QFileDialog::getOpenFileName()) != "")
+    {
+
+        direction = 'z';
+        ui.label_2->setText("z");
+        if (ui.label->text() == "")
+        {
+            ui.label->setText("Texture");
+        }
+
+        ui.openGLWidget->load(path, direction);
+        ui.horizontalSlider->setMaximum(ui.openGLWidget->getDepth());
+
+        QString min = QString::fromStdString(std::to_string(ui.openGLWidget->getMin()));
+        QString max = QString::fromStdString(std::to_string(ui.openGLWidget->getMax()));
+        ui.lineEdit->setText(min);
+        ui.lineEdit_2->setText(max);
+    }
 }
