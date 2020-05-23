@@ -25,23 +25,12 @@ struct Ray
 	vec3 direction;
 };
 
-/*struct Material
+struct Material
 {
 	float ambient;
 	float diffuse;
 	float specular;
 	float specular_power;
-};*/
-
-struct Material
-{
-	vec3 Color;
-
-	vec4 LightCoeffs;
-
-	float ReflectionCoef;
-	float RefractionCoef;
-	int MaterialType;
 };
 
 struct Intersection
@@ -85,7 +74,7 @@ layout(std430, binding = 0) buffer SphereBuffer
 
 //--------Setup default values-------------------------------------------------
 
-//Material material = {0.4, 0.9, 0.0, 512.0};
+Material material = {0.4, 0.9, 0.0, 512.0};
 vec3 light_pos = vec3(1, 0, -8);
 
 //--------Uniform values--------------------------------------------------------
@@ -99,7 +88,7 @@ uniform vec2 scale;
 Ray GenerateRay (Camera camera);
 bool IntersectSphere (Sphere sphere, Ray ray, float start, float final, out float time);
 bool Intersect (Ray ray, float start, float final, inout Intersection intersect);
-vec3 Phong (Intersection interset, Light currLight, float shadow);
+vec3 Phong (Intersection interset, vec3 pos_light, float shadow);
 float Shadow (Light currLight, Intersection intersect);
 vec4 Raytrace (Ray primary_ray);
 
@@ -161,31 +150,33 @@ bool Intersect (Ray ray, float start, float final, inout Intersection intersect)
 	return result;
 }
 
-vec3 Phong (Intersection intersect, Light currLight, float shadow)
+vec3 Phong (Intersection intersect, vec3 pos_light, float shadow)
 {
-	vec3 light = normalize (currLight.position - intersect.point);
+	vec3 light = normalize (pos_light - intersect.point);
 	float diffuse = max(dot(light, intersect.normal), 0.0);
 	vec3 view = normalize(camera.position - intersect.point);
-	vec3 reflected = reflect(-view, intersect.normal);
-	float specular = pow(max(dot(reflected, light), 0.0), intersect.LightCoeffs.w);
-	return intersect.LightCoeffs.x * intersect.color + 
-		intersect.LightCoeffs.y * diffuse * intersect.color +
-		intersect.LightCoeffs.z * specular /** Unit*/;
+	vec3 reflected = reflect(view, -intersect.normal);
+	float specular = pow(max(dot(reflected, light), 0.0), material.specular_power);
+
+	return material.ambient * intersect.color + shadow *
+		(material.diffuse * diffuse * intersect.color + material.specular * specular * vec3(1, 1, 1));
 }
 
-float Shadow (Light currLight, Intersection intersect)
+float Shadow (vec3 pos_light, vec3 point)
 {
-	float shadowing = 1.0;
-	vec3 direction = normalize(currLight.position - intersect.point);
-	float distanceLight = distance(currLight.position, intersect.point);
-	Ray shadowRay = Ray(intersect.point + direction * EPSILON, direction);
-	Intersection shadowIntersect;
-	shadowIntersect.time = BIG;
-	/*if (Raytrace(shadowRay) == vec4(0, 0, 0 ,0))
+	float light = 1.0;
+
+	vec3 direction = normalize(pos_light - point);
+	Ray shadow_ray = Ray(point + direction * EPSILON, direction);
+	
+	Intersection intersect;
+	intersect.time = distance(pos_light, point);
+	
+	if (Intersect(shadow_ray, 0, intersect.time, intersect))
 	{
-		shadowing = 0.0;
-	}*/
-	return shadowing;
+		light = 0.0;
+	}
+	return light;
 }
 
 vec4 Raytrace (Ray primary_ray)
@@ -198,13 +189,10 @@ vec4 Raytrace (Ray primary_ray)
 	float start = 0;
 	float final =  BIG;
 
-	Light light;
-	light.position = light_pos;
-
 	if (Intersect(ray, start, final, intersect))
 	{
-		float shadowing = Shadow(light, intersect);
-		resultColor += vec4(Phong(intersect, light, shadowing), 0);
+		float shadowing = Shadow(light_pos, intersect.point);
+		resultColor += vec4(Phong(intersect, light_pos, shadowing), 0);
 	}
 	return resultColor;
 }
