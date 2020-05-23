@@ -1,5 +1,7 @@
 #include "ShaderWidget.h"
 
+#define ANGLE 0.02
+
 ShaderWidget::ShaderWidget(QWidget* parent)
 {
     //--------Set up verticies--------------------------------------------------
@@ -17,12 +19,30 @@ ShaderWidget::ShaderWidget(QWidget* parent)
     vert_data[10] = 1;
     vert_data[11] = 0;
 
+    //--------Set up camera-----------------------------------------------------
+
+    camera.position = QVector3D(0.0, 0.0, -10);
+    camera.view = QVector3D(0.0, 0.0, 1.0);
+    camera.up = QVector3D(0.0, 1.0, 0.0);
+    camera.side = QVector3D(1.0, 0.0, 0.0);
+
     //--------Set up objects----------------------------------------------------
-    all_spheres = new Sphere;
-    all_spheres->position = QVector3D(0, 0, 0);
-    all_spheres->radius = 1.0;
-    all_spheres->color = QVector3D(1.0, 0.0, 0.0);
-    all_spheres->material_idx = 0;
+    all_spheres = new Sphere[3];
+
+    all_spheres[0].position = QVector3D(0, 0, 10);
+    all_spheres[0].radius = 5.0;
+    all_spheres[0].color = QVector3D(1.0, 0.0, 0.0);
+    all_spheres[0].material_idx = 0;
+
+    all_spheres[1].position = QVector3D(1, 0, 0);
+    all_spheres[1].radius = 1.0;
+    all_spheres[1].color = QVector3D(0.0, 1.0, 0.0);
+    all_spheres[1].material_idx = 0;
+
+    all_spheres[2].position = QVector3D(10, 0, -10);
+    all_spheres[2].radius = 1.0;
+    all_spheres[2].color = QVector3D(0.0, 0.0, 1.0);
+    all_spheres[2].material_idx = 0;
 }
 
 ShaderWidget::~ShaderWidget()
@@ -59,10 +79,10 @@ void ShaderWidget::initializeGL()
 
     if (!m_program.bind()) qWarning("Error bind program shader");
 
-    m_program.setUniformValue("camera.position", QVector3D(0.0, 0.0, -10));
-    m_program.setUniformValue("camera.view",     QVector3D(0.0, 0.0, 1.0));
-    m_program.setUniformValue("camera.up",       QVector3D(0.0, 1.0, 0.0));
-    m_program.setUniformValue("camera.side",     QVector3D(1.0, 0.0, 0.0));
+    m_program.setUniformValue("camera.position", camera.position);
+    m_program.setUniformValue("camera.view",     camera.view);
+    m_program.setUniformValue("camera.up",       camera.up);
+    m_program.setUniformValue("camera.side",     camera.side);
 
     m_program.setUniformValue("scale", QVector2D(width(), height()));
     m_program.release();
@@ -74,8 +94,7 @@ void ShaderWidget::initializeGL()
     GLuint ssbo = 0;
     functions->glGenBuffers(1, &ssbo);
     functions->glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
-    //1 = size of spheres
-    functions->glBufferData(GL_SHADER_STORAGE_BUFFER, 1 * sizeof(Sphere), all_spheres, GL_DYNAMIC_COPY);
+    functions->glBufferData(GL_SHADER_STORAGE_BUFFER, 3 * sizeof(Sphere), all_spheres, GL_DYNAMIC_COPY);
 
     functions->glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, ssbo);
 }
@@ -107,4 +126,49 @@ void ShaderWidget::paintGL()
     m_program.disableAttributeArray(vert_data_location);
 
     m_program.release();
+}
+
+void ShaderWidget::keyPressEvent(QKeyEvent* event)
+{
+    if (event->nativeVirtualKey() == Qt::Key_A)
+    {
+        camera.view.setX(camera.view.x() * cos(ANGLE) - camera.view.z() * sin(ANGLE));
+        camera.view.setZ(camera.view.x() * sin(ANGLE) + camera.view.z() * cos(ANGLE));
+        camera.view.normalize();
+        camera.side.setX(camera.side.x() * cos(ANGLE) - camera.side.z() * sin(ANGLE));
+        camera.side.setZ(camera.side.x() * sin(ANGLE) + camera.side.z() * cos(ANGLE));
+        camera.side.normalize();
+        if (!m_program.bind()) qWarning("Error bind program shader");
+        m_program.setUniformValue("camera.view", camera.view);
+        m_program.setUniformValue("camera.side", camera.side);
+        m_program.release();
+    }
+    else if (event->nativeVirtualKey() == Qt::Key_D)
+    {
+        camera.view.setX(camera.view.x() * cos(- ANGLE) - camera.view.z() * sin(- ANGLE));
+        camera.view.setZ(camera.view.x() * sin(- ANGLE) + camera.view.z() * cos(- ANGLE));
+        camera.view.normalize();
+        camera.side.setX(camera.side.x() * cos(- ANGLE) - camera.side.z() * sin(- ANGLE));
+        camera.side.setZ(camera.side.x() * sin(- ANGLE) + camera.side.z() * cos(- ANGLE));
+        camera.side.normalize();
+        if (!m_program.bind()) qWarning("Error bind program shader");
+        m_program.setUniformValue("camera.view", camera.view);
+        m_program.setUniformValue("camera.side", camera.side);
+        m_program.release();
+    }
+    else if (event->nativeVirtualKey() == Qt::Key_W)
+    {
+        camera.position += camera.view * 0.2;
+        if (!m_program.bind()) qWarning("Error bind program shader");
+        m_program.setUniformValue("camera.position", camera.position);
+        m_program.release();
+    }
+    else if (event->nativeVirtualKey() == Qt::Key_S)
+    {
+        camera.position -= camera.view * 0.2;
+        if (!m_program.bind()) qWarning("Error bind program shader");
+        m_program.setUniformValue("camera.position", camera.position);
+        m_program.release();
+    }
+    update();
 }
