@@ -130,7 +130,21 @@ void ShaderWidget::paintGL()
 
 void ShaderWidget::keyPressEvent(QKeyEvent* event)
 {
-    if (event->nativeVirtualKey() == Qt::Key_A)
+    if (event->nativeVirtualKey() == Qt::Key_W)
+    {
+        camera.position += camera.view * 0.2;
+        if (!m_program.bind()) qWarning("Error bind program shader");
+        m_program.setUniformValue("camera.position", camera.position);
+        m_program.release();
+    }
+    else if (event->nativeVirtualKey() == Qt::Key_S)
+    {
+        camera.position -= camera.view * 0.2;
+        if (!m_program.bind()) qWarning("Error bind program shader");
+        m_program.setUniformValue("camera.position", camera.position);
+        m_program.release();
+    }
+    else if (event->nativeVirtualKey() == Qt::Key_A)
     {
         camera.view.setX(camera.view.x() * cos(ANGLE) - camera.view.z() * sin(ANGLE));
         camera.view.setZ(camera.view.x() * sin(ANGLE) + camera.view.z() * cos(ANGLE));
@@ -145,29 +159,15 @@ void ShaderWidget::keyPressEvent(QKeyEvent* event)
     }
     else if (event->nativeVirtualKey() == Qt::Key_D)
     {
-        camera.view.setX(camera.view.x() * cos(- ANGLE) - camera.view.z() * sin(- ANGLE));
-        camera.view.setZ(camera.view.x() * sin(- ANGLE) + camera.view.z() * cos(- ANGLE));
+        camera.view.setX(camera.view.x() * cos(-ANGLE) - camera.view.z() * sin(-ANGLE));
+        camera.view.setZ(camera.view.x() * sin(-ANGLE) + camera.view.z() * cos(-ANGLE));
         camera.view.normalize();
-        camera.side.setX(camera.side.x() * cos(- ANGLE) - camera.side.z() * sin(- ANGLE));
-        camera.side.setZ(camera.side.x() * sin(- ANGLE) + camera.side.z() * cos(- ANGLE));
+        camera.side.setX(camera.side.x() * cos(-ANGLE) - camera.side.z() * sin(-ANGLE));
+        camera.side.setZ(camera.side.x() * sin(-ANGLE) + camera.side.z() * cos(-ANGLE));
         camera.side.normalize();
         if (!m_program.bind()) qWarning("Error bind program shader");
         m_program.setUniformValue("camera.view", camera.view);
         m_program.setUniformValue("camera.side", camera.side);
-        m_program.release();
-    }
-    else if (event->nativeVirtualKey() == Qt::Key_W)
-    {
-        camera.position += camera.view * 0.2;
-        if (!m_program.bind()) qWarning("Error bind program shader");
-        m_program.setUniformValue("camera.position", camera.position);
-        m_program.release();
-    }
-    else if (event->nativeVirtualKey() == Qt::Key_S)
-    {
-        camera.position -= camera.view * 0.2;
-        if (!m_program.bind()) qWarning("Error bind program shader");
-        m_program.setUniformValue("camera.position", camera.position);
         m_program.release();
     }
     update();
