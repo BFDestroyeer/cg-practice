@@ -52,6 +52,12 @@ struct Sphere
 	int material_idx;
 };
 
+struct Fleet
+{
+	float level;
+	vec3 color;
+};
+
 //--------Buffers---------------------------------------------------------------
 
 layout(std430, binding = 0) buffer SphereBuffer
@@ -62,8 +68,8 @@ layout(std430, binding = 0) buffer SphereBuffer
 //--------Setup default values-------------------------------------------------
 
 Material material = {0.1, 0.9, 0.0, 512.0};
-vec3 light_pos = vec3(1, 0, -8);
-
+vec3 light_pos = vec3(0, 1, -8);
+Fleet fleet = { -5, {1.0, 1.0, 1.0} };
 //--------Uniform values--------------------------------------------------------
 
 uniform Camera camera;
@@ -78,6 +84,7 @@ Ray GenerateRay (Camera camera);
 //Intersection functions
 bool Intersect (Ray ray, float start, float final, inout Intersection intersect);
 bool IntersectSphere (Sphere sphere, Ray ray, float start, float final, out float time);
+bool IntersectFleet (Fleet fleet, Ray ray, float start, float final, out float time);
 
 //Lighting and shadowing functions
 vec3 Phong (Intersection interset, vec3 light_position, float shadow);
@@ -113,6 +120,15 @@ bool Intersect (Ray ray, float start, float final, inout Intersection intersect)
 			result = true;
 		}
 	}
+	if (IntersectFleet(fleet, ray, start, final, time) && time < intersect.time)
+		{
+			intersect.time = time;
+			intersect.point = ray.origin + ray.direction * time;
+			intersect.normal = vec3(0, 1, 0);
+			intersect.color = fleet.color;
+			intersect.material_idx = 0;
+			result = true;
+		}
 	return result;
 }
 
@@ -138,6 +154,17 @@ bool IntersectSphere (Sphere sphere, Ray ray, float start, float final, out floa
 			return true;
 		}
 		time = min(t1, t2);
+		return true;
+	}
+	return false;
+}
+
+bool IntersectFleet (Fleet fleet, Ray ray, float start, float final, out float time)
+{
+	float t = (fleet.level - ray.origin.y) / ray.direction.y;
+	if (t > 0)
+	{
+		time = t;
 		return true;
 	}
 	return false;
